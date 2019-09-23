@@ -1,6 +1,6 @@
 from flask import render_template, request, redirect, url_for
 from app import app
-from app.models import Rights
+from app.models import Rights, ShareHolder
 
 @app.route('/')
 @app.route('/index')
@@ -33,7 +33,7 @@ def submit():
 
 @app.route('/')
 def show_account():
-    investors = Rights.get_account(int(request.form['account_number']))
+    investors = ShareHolder.get_account(int(request.form['account_number']))
     return render_template('show_all.html', investors = investors )
 
     
