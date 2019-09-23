@@ -1,0 +1,15 @@
+{%extends "base.html"%} {%block index%}
+<div>
+    {%if message%}
+    <p class="">{{mesage | safe}}</p>
+</div>
+<div></div>
+{%endif%}
+<form action="/submit" method="POST">
+    <div class="" style="text-align: center;">
+        <h3>Account Number</h3>
+        <input type="text" name="account_number" placeholder="Investor Account Number" />
+        <input type="submit" name="search" placeholder="Search" />
+    </div>
+</form>
+{%endblock%}
