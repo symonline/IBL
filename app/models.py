@@ -9,6 +9,9 @@ class Rights(db.Model):
     name = db.Column(db.String(140))
     bvn = db.Column(db.Integer, index=True, unique=True)
     chn = db.Column(db.Integer, index=True, unique=True)
+    right_date=
+    right_applied=
+    
     unit_held = db.Column(db.Integer)
     right_due = db.Column(db.Integer)
     amount = db.Column(db.Float)
