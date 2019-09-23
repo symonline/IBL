@@ -34,6 +34,9 @@ nosetests.xml
 .mr.developer.cfg
 .project
 .pydevproject
+.vscode
+*.sql
+.code-workspace.code-workspace
 
 venv
 app.db
