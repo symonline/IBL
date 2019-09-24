@@ -1,6 +1,6 @@
 from flask import render_template, request, redirect, url_for
 from app import app
-from app.models import Rights, ShareHolder
+from app.models import Right, ShareHolder
 
 @app.route('/')
 @app.route('/index')

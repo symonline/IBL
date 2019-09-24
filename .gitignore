@@ -17,15 +17,10 @@ __pycache__/
 # Distribution / packaging
 
 .Python
-
 build/
-
 develop-eggs/
-
 dist/
-
 downloads/
-
 eggs/
 
 .eggs/
@@ -112,7 +107,7 @@ local_settings.py
 
 db.sqlite3
 
-
+right-database.sqlite3
 
 # Flask stuff:
 

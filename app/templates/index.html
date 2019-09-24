@@ -4,12 +4,22 @@
     <p class="">{{mesage | safe}}</p>
 </div>
 <div></div>
+
 {%endif%}
-<form action="/submit" method="POST">
-    <div class="" style="text-align: center;">
+
+<div>
+    <select name="serach_list" form="searcher">
+            <option value="acno">REGISTRARS ACCOUNT Number</option>
+            <option value="bvn">BVN</option>
+            <option value="chn">SHAREHOLDER CHN</option>
+        </select>
+</div>
+<form action="/submit " method="POST " id="searcher ">
+
+    <div class=" " style="text-align: center; ">
         <h3>Account Number</h3>
-        <input type="text" name="account_number" placeholder="Investor Account Number" />
-        <input type="submit" name="search" placeholder="Search" />
+        <input type="text " name="account_number " placeholder="Investor Account Number " />
+        <input type="submit " name="search " placeholder="Search " />
     </div>
 </form>
 {%endblock%}
