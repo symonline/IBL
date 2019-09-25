@@ -115,7 +115,9 @@ instance/
 
 .webassets-cache
 
+# IDE VSCODE
 
+.code-workspace.code-workspace
 
 # Scrapy stuff:
 
