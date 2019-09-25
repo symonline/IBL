@@ -13,13 +13,13 @@ class ShareHolder(db.Model):
     name = db.Column(db.String(300), nullable = False)
     bvn = db.Column(db.Integer, index=True, nullable=True)
     chn = db.Column(db.Integer, index=True, nullable=True)
-    agent_member_code = db.Column(db.String(140), nullable=True)
     phone = db.Column(db.Integer, nullable=True)
     email = db.Column(db.String(64), nullable=True)
     cscs_account_no = db.Column(db.Integer, index=True, nullable=True)
     address = db.Column(db.String(300), nullable=True)
+    agent_member_code = db.Column(db.String(20), nullable=True)
     timestamp = db.Column(db.DateTime, default=datetime.utcnow, index=True )
-    right_owned = db.relationship('Right', backref='investor' , lazy='dynamic')
+    rightowned = db.relationship('Right', backref='investor' , lazy='dynamic')
 
 
     #def __init__(self, *args ,**kwargs):
@@ -77,19 +77,19 @@ class Right(db.Model):
     __tablename__='right'
 
     id = db.Column(db.Integer, primary_key=True, index=True, unique=True)
-    acno = db.Column(db.Integer, index=True, unique=True, nullable=False)
-    right_date=db.Column(db.Integer)
-    right_applied=db.Column(db.Integer, nullable=True)
-    additional_right_applied= db.Column(db.Integer, nullable=True)
+    acno = db.Column(db.Integer, index=True, unique=True)
     unit_held = db.Column(db.Integer, nullable=True)
     right_due = db.Column(db.Integer, nullable=True)
     amount = db.Column(db.Float(), nullable=True)
+    company = db.Column(db.String(140), nullable=True)
+    right_date=db.Column(db.DateTime)
+    right_applied=db.Column(db.Integer, nullable=True)
+    additional_right_applied= db.Column(db.Integer, nullable=True)
     additional_apply = db.Column(db.Integer, nullable=True)
     additional_price = db.Column(db.Integer, nullable=True)
     balance = db.Column(db.Integer, nullable=True)
-    company = db.Column(db.String(140), nullable=True)
     timestamp =db.Column(db.DateTime, default = datetime.utcnow, index=True)
-    holder_id = db.Column(db.Integer, db.ForeignKey('share_holder.id'))
+    holder= db.Column(db.Integer, db.ForeignKey('share_holder.id'))
 
     
     def __init__(self, **kwargs):
