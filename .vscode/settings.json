@@ -29,27 +29,6 @@
             "port": 1433,
             "server": "192.168.1.23",
             "username": "ApelUser"
-        },
-        {
-            "askForPassword": false,
-            "connectionTimeout": 30,
-            "database": "XTRAC_NET",
-            "dialect": "MSSQL",
-            "name": "IEXTRACT",
-            "port": 1433,
-            "server": "192.168.1.23",
-            "username": "ApelUser"
-        },
-        {
-            "database": "d7d90ifqq940ed",
-            "dialect": "PostgreSQL",
-            "isActive": false,
-            "isConnected": false,
-            "name": "IBL-RIGHTS-HEROKU-DB",
-            "password": "3276aad73bb4ba5e8e4a8a3a4e40dc79ed7d93d85a7cd4c5e70742e3bac5ed86",
-            "port": 5432,
-            "server": "ec2-46-51-190-87.eu-west-1.compute.amazonaws.com",
-            "username": "aeolghqbxijwhs"
         }
     ],
     "python.pythonPath": "/home/symonline/.virtualenvs/ibl-rights/bin/python"
