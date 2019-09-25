@@ -5,7 +5,9 @@ decorator==4.4.0
 Flask==1.1.1
 Flask-Alembic==2.0.1
 Flask-Migrate==2.5.2
+Flask-Script==2.0.6
 Flask-SQLAlchemy==2.4.0
+Flask-WTF==0.14.2
 gunicorn==19.9.0
 ipdb==0.12.2
 ipython==7.8.0
@@ -31,3 +33,4 @@ traitlets==4.3.2
 wcwidth==0.1.7
 Werkzeug==0.16.0
 wkhtmltopdf==0.2
+WTForms==2.2.1
