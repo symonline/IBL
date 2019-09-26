@@ -6,6 +6,7 @@
 	],
 	"settings": {
 		"sqltools.connections": [
+			
 			{
 				"connectionTimeout": 30,
 				"database": "apvest_db",

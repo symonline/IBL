@@ -4,6 +4,8 @@ from datetime import datetime
 class ShareHolder(db.Model):
     item=''
     signal=''
+    __deleted_share_holders__=[]
+    __updated_share_holders__=[]
 
     __tablename__='share_holder'
 
@@ -21,28 +23,8 @@ class ShareHolder(db.Model):
     timestamp = db.Column(db.DateTime, default=datetime.utcnow, index=True )
     rightowned = db.relationship('Right', backref='investor' , lazy='dynamic')
 
-
-    #def __init__(self, *args ,**kwargs):
     def __init__(self, **kwargs):
         self.__dict__.update(kwargs)
-    ''' sn, acno, name, email, cscs_account_no, 
-        bvn, chn, agent_member_code, phone, address):
-        self.sn = kwargs[sn]
-        self.acno = kwargs[acno]
-        self.name = kwargs[name]
-        self.email =  kwargs[email] 
-        self.cscs_account_no = kwargs[cscs_account_no] 
-        self.bvn = kwargs[bvn]
-        self.chn = chn
-        self.agent_member_code = agent_member_code
-        self.phone = phone
-        self.address = address 
-    
-
-    @classmethod
-    def get_shareholder(cls):
-        return cls.query.filter_by(name = self.__dict__[name].first()
-    '''
 
     @classmethod
     def get_shareholder_by(cls): # search by seti
@@ -54,21 +36,52 @@ class ShareHolder(db.Model):
             return cls.query.filter_by(acno = cls.item).first()
     
     @classmethod
+    # Help to retrieve all shareholder's record
     def get_all_shareholder(cls):
-        return cls.query.order_by('Asc').all()
+        return cls.query.all()
+    
+    @classmethod
+    # To Help with the search for shareholder specifically by their
+    # "registrars account number" (note: "reg_no" is just a search- 
+    # argument which should be provided by you(developer) 
+    # from either your Form or thereabout )
+    def get_shareholder_by_acno(cls, reg_no):
 
+        return cls.query.filter_by(acno = reg_no).first()
+
+    #(To be used to create new Share Holder's record
+    # in our database
+    # Note: an instance object must be created first in your function
+    # before calling this method e.g investor = ShareHolder(sn="?", acno="?",name="?")
+    # befor calling investor.save_shareholder())
     def save_shareholder(self):
         db.session.add(self)
         db.session.commit()
 
-    def delete_shareholder(self):
-        db.session.delete(self)
-        db.session.commit()
-
-    def update_shareholder(self, obj, value):
+    #(To be used to delete existing Share Holder's record
+    # in our database
+    # Note: an instance object must be created first in your function
+    # before calling this method e.g holder = ShareHolder.get_shareholder_by_acno(reg_no=324)
+    # befor calling investor.delete_shareholder(holder))
+    @classmethod
+    def delete_shareholder(cls, obj): # Where obj is a ShareHolder
+        if obj: 
+            cls.__deleted_share_holders__.append(obj)
+            db.session.delete(obj)
+            db.session.commit()
+            return True
+        else:
+            return False
+    @classmethod
+    def update_shareholder(cls, obj, value):
         # obj=cls.query.filter_by(chn=value).first()
-        obj.amount = value
-        db.session.commit()
+        if obj:
+            cls.__updated_share_holders__.append(obj)
+            obj.amount = value
+            db.session.commit()
+            return True
+        else:
+            return False
 
     def __repr__(self):
         return f'SN:{self.sn} ACCOUNT: {self.acno} Nmes:{self.name}'
