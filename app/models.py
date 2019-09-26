@@ -38,6 +38,11 @@ class ShareHolder(db.Model):
             return cls.query.filter_by(acno = reg_acc_no).first()
         else:
             return 0
+    
+    @classmethod
+    def right_info(cls, reg_acc_no):# this should return a list of right owned by this account
+        u=cls.get_shareholder_by_acno(reg_acc_no)
+        return u.rightowned
 
     @classmethod
     def create_new(cls,reg_acc_no, obj=0): # Where obj is a ShareHolder and reg_acc_no is shareholder registrars account no
