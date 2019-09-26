@@ -1,11 +1,13 @@
 from app import db
 from datetime import datetime
+import pdb
 
 class ShareHolder(db.Model):
     item=''
     signal=''
     __deleted_share_holders__=[]
     __updated_share_holders__=[]
+    __created_share_holders__=[]
 
     __tablename__='share_holder'
 
@@ -25,6 +27,30 @@ class ShareHolder(db.Model):
 
     def __init__(self, **kwargs):
         self.__dict__.update(kwargs)
+    
+    @classmethod
+    # To Help with the search for shareholder specifically by their
+    # "registrars account number" (note: "reg_no" is just a search- 
+    # argument which should be provided by you(developer) 
+    # from either your Form or thereabout )
+    def get_shareholder_by_acno(cls, reg_acc_no): # whwre reg_no is an existing shareholder registrars account no
+        if reg_acc_no:
+            return cls.query.filter_by(acno = reg_acc_no).first()
+        else:
+            return 0
+
+    @classmethod
+    def create_new(cls,reg_acc_no, obj=0): # Where obj is a ShareHolder and reg_acc_no is shareholder registrars account no
+        if not obj : # Ensure SHAREHOLDER Object/obj and Registrars account no don't exist before creation(integrity)
+            if  reg_acc_no is False: 
+                db.session.add(obj)
+                db.session.commit()
+                cls.__created_share_holders__.append(obj) # Add newly created SHAREHOLDER to Global variable
+                return True
+            else:
+                return False
+        else:
+            return False
 
     @classmethod
     def get_shareholder_by(cls): # search by seti
@@ -39,15 +65,6 @@ class ShareHolder(db.Model):
     # Help to retrieve all shareholder's record
     def get_all_shareholder(cls):
         return cls.query.all()
-    
-    @classmethod
-    # To Help with the search for shareholder specifically by their
-    # "registrars account number" (note: "reg_no" is just a search- 
-    # argument which should be provided by you(developer) 
-    # from either your Form or thereabout )
-    def get_shareholder_by_acno(cls, reg_no):
-
-        return cls.query.filter_by(acno = reg_no).first()
 
     #(To be used to create new Share Holder's record
     # in our database
@@ -72,6 +89,8 @@ class ShareHolder(db.Model):
             return True
         else:
             return False
+
+    '''
     @classmethod
     def update_shareholder(cls, obj, value):
         # obj=cls.query.filter_by(chn=value).first()
@@ -82,9 +101,20 @@ class ShareHolder(db.Model):
             return True
         else:
             return False
+    '''
+
+    def update_shareholder(self,value): # parse in argument from your form via view-function
+        if value:
+            self.holder = value
+            db.session.commit()
+            return True
+        else:
+            return False
 
     def __repr__(self):
         return f'SN:{self.sn} ACCOUNT: {self.acno} Nmes:{self.name}'
+
+
 
 class Right(db.Model):
     __tablename__='right'
@@ -125,15 +155,45 @@ class Right(db.Model):
         '''
    
     @classmethod
-    def get_right(cls, value):
-        return cls.query.filter_by(acno = value).all()
-        
-    def update_right(self, obj, value):
-        obj.additional_apply = value
-        db.session.commit()
+    def get_right_by_acno(cls, reg_acc_no): # where reg_acc_no is an existing shareholder registrars account no
+        if reg_acc_no :
+            return cls.query.filter_by(acno = reg_acc_no).first()
+        else:
+            return 0
 
     @classmethod
-    def find_right_by(cls):
+    def get_all_right(cls, value):
+        return cls.query.filter_by(acno = value).all()
+        
+    def update_additional_right(self,value): # parse in argument from your form via view-function
+        if value:
+            self.additional_apply = value
+            db.session.commit()
+            return True
+        else:
+            return False
+
+    def update_right_applied(self,value): # parse in argument from your form via view-function
+        if value:
+            self.right_applied = value
+            db.session.commit()
+            return True
+        else:
+            return False
+
+    @classmethod
+    def update_right_r(cls, obj, value):
+        # obj=cls.query.filter_by(chn=value).first()
+        if obj:
+            cls.__updated_share_holders__.append(obj)
+            obj.additional_apply = value
+            db.session.commit()
+            return True
+        else:
+            return False
+
+    @classmethod
+    def get_right_by(cls):
         if cls.signal == 'chn':
             return cls.query.filter_by(chn = cls.item).first()
         elif cls.signal == 'bvn':
@@ -151,6 +211,14 @@ class Right(db.Model):
 
     def delete_right(self):
         db.session.delete(self)
+        db.session.commit()
+
+    @classmethod
+    def clear_data(cls):
+        meta = db.metadata
+        for table in reversed(meta.sorted_tables):
+            print ('Clear table %s' % table)
+            db.session.execute(table.delete())
         db.session.commit()
         
     def __repr__(self):
