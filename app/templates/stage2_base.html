@@ -4,11 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge"> {%if title %}
-    <title>{{title}} IBL RIGHT ISSUE</title>
-    {%else%}
-    <title>{{title}}WELCOME TO IBL RIGHT ISSUE</title>
-    {%endif%}
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>IBL RIGHT ISSUE</title>
 </head>
 
 <body>
@@ -16,12 +13,10 @@
         <img style="width: 101px; height: 95px;" id="Picture 57" src="../static/img/logo-smaller.png" alt="APEL" class=""> <img id="Picture 57" src="../static/img/nlogo_0.png" alt="IBL" class="">
     </div>
     <div>
-        IBL:
-        <a href="/search">search</a>
-        <a href="/index">Index</a> {% block search_form %} {% endblock %}
+        {% block result%} {% endblock %}
     </div>
     <div>
-        {% block result %} {% endblock %}
+        {%block consent%} {% endblock %}
     </div>
 </body>
 

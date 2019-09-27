@@ -1,45 +1,55 @@
 from flask import render_template, request, redirect, url_for
 from app import app, db
 from app.models import ShareHolder, Right
+from app.forms import SearchForm_logic, ConsentForm_logic
 
 @app.route('/')
 @app.route('/index')
 def index():
-    return render_template('index.html')
+    info='WELCOME TO THE IBL RIGHT OFFER TEST PAGE'
+    
+    #holders_detail=ShareHolder.get_shareholder_by_acno(request.form['?'])
+    return render_template('index.html', title='HOME', info = info)
 
-@app.route('/submit', methods=['POST'])
-def submit():
     '''
-    if request.methods == 'POST':
-        account = request.form['account_number']
-        print (account.value)
-        if account.value == '':
-            return render_template('index.htm', message='Please enter required field')
-    #if db.session.query(Rights).filter(Rights.id==account).count()==0:
+        if request.methods == 'POST':
+            account = request.form['account_number']
+            print (account.value)
+            if account.value == '':
+                return render_template('index.htm', message='Please enter required field')
+        #if db.session.query(Rights).filter(Rights.id==account).count()==0:
 
-    return render_template('success.html', account = account)
+        return render_template('success.html', account = account)
     '''
-    accounts = [
-        {
-        'sn':1,
-        'acno':2938475,
-        'name': 'Oshoke Louis Cypiran Peter',
-        'units': 300,
-        'right_due': 25,
-        'amount': 150
-             },
-         ]
-    return render_template('result.html', accounts = accounts)
+@app.route('/search',methods=['GET', 'POST'])
+def search():
+    sform = SearchForm_logic()
+    #holders_detail=ShareHolder.get_shareholder_by_acno(request.form['?'])
+    return render_template('search.html', title='Find Right',sform = sform)
+'''
+@app.route('/result',methods=['GET', 'POST'])
+def result():
+    holders_detail=ShareHolder.get_shareholder_by_acno(request.form['?'])
+    return render_template('index.html', holders_detail = holders_detail)
 
-@app.route('/')
-def show_account():
-    investors = ShareHolder.get_account(int(request.form['account_number']))
-    return render_template('show_all.html', investors = investors )
+@app.route('/result',methods=['GET', 'POST'])
+def consent():
+    criteria = ['acno','bvn','chn']
+    form_args = request.form['?']
+    item = Right(item=form_args)
+    if  criteria['acno'] == request.form['?']:
+        holders_right=Right.get_right_by(request.form['?']) # when acno is parsed
+        return render_template('result.html', holders_detail = holders_right )
+   
+    elif criteria['bvn'] == request.form['?']:
+        holders_right=Right.get_right_by(request.form['?']) # when bvn is parsed
+        return render_template('result.html', holders_detail = holders_right )
 
-@app.route('/<sig>,<val>')
-def additional(sig,val):
-    choice=ShareHolder.signal = sig
-    content=ShareHolder.item = val
+    elif criteria['chn'] == request.form['?']:
+        holders_right=Right.get_right_by(request.form['?']) # when chn is parsed
+        return render_template('result.html', holders_detail = holders_right )
+    else: 
+        return url_for('consent')
 
-    usr=ShareHolder.get_shareholder_by()
-    usr
+
+'''

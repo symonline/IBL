@@ -1,0 +1,21 @@
+{% extends "base.html" %} {% block search_form %}
+<div>
+    <h1> SEARCH RIGHT DETAILS</h1>
+    <!--from form.py  -->
+
+    <form action="" method="POST">
+        {{sform.hidden_tag()}}
+        <p>
+            {{sform.criteria.label }}<br> {{sform.criteria}}
+        </p>
+        <p>
+            {{sform.identifier.label }}<br> {{sform.identifier}}
+        </p>
+        <p>
+            {{sform.search}}
+        </p>
+
+    </form>
+</div>
+
+{%endblock%}
