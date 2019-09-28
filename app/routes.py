@@ -30,8 +30,8 @@ def search():
             flash ("Share Holder Number is either wrong of Don't exist")
             return redirect(url_for('search'))
         flash('Right info requested for shareholder: {}, Identifier: {}'.format(sform.criteria.data, sform.identifier.data))
-        right=Right
-        return render_template('index.html', title='HOME', sharehohlder = sharehohlder)
+        right = Right.get_right_by_acno(account_number)
+        return render_template('index.html', title='HOME', sharehohlder = sharehohlder, right = right)
     # holders_detail=ShareHolder.get_shareholder_by_acno(request.form['?'])
     return render_template('search.html', title='Find Right',sform = sform)
 
