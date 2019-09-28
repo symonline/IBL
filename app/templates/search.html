@@ -1,15 +1,17 @@
 {% extends "base.html" %} {% block search_form %}
 <div>
-    <h1> SEARCH RIGHT DETAILS</h1>
+    <h1> SEARCH RIGHT</h1>
     <!--from form.py  -->
 
     <form action="" method="POST">
         {{sform.hidden_tag()}}
         <p>
-            {{sform.criteria.label }}<br> {{sform.criteria}}
+            {{sform.criteria.label }}<br> {{sform.criteria}}<br> {% for error in sform.criteria.errors %}
+            <span style="color:red;">{{error}}</span> {%endfor%}
         </p>
         <p>
-            {{sform.identifier.label }}<br> {{sform.identifier}}
+            {{sform.identifier.label }}<br> {{sform.identifier}}<br> {% for error in sform.identifier.errors %}
+            <span style="color:red;">{{error}}</span> {%endfor%}
         </p>
         <p>
             {{sform.search}}
@@ -17,5 +19,6 @@
 
     </form>
 </div>
+
 
 {%endblock%}

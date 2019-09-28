@@ -4,12 +4,12 @@ from wtforms.validators import DataRequired
 
 
 class SearchForm_logic(FlaskForm):
-    criteria = SelectField('Criteria', choices=[('1', 'BVN'), ('2', 'ACCOUNT NO'), ('3', 'CHN')])
+    criteria = SelectField('Criteria', choices=[('bvn', 'BVN'), ('acno', 'ACCOUNT NO'), ('chn', 'CHN')])
     identifier = StringField('Identifier', validators=[DataRequired()])
     search = SubmitField('Search')
      
 
 class ConsentForm_logic(FlaskForm):
-    accepted_right = StringField('Accepted_right', alidators=[DataRequired()])
+    accepted_right = StringField('Accepted_right', validators=[DataRequired()])
     find = SubmitField('Find')
     

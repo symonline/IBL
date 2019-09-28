@@ -1,9 +1,50 @@
-{% extends "base.html" %} {% block search_form %}
-<div>
-
-    <!--from form.py  -->
-    <h1>
-        <{{info}} </h1>
+{% extends "base.html" %} {% block result %}
+<div class="">
+    <img src="../static/img/logo.png" alt="" class="" />
+    <h1>Succesful</h1>
+    <h2>Thank you!</h2>
 </div>
+<!--# {{info }}<br> {{sharehohlder['acno']}}<br>{{sharehohlder['name']}}-->
 
+<div style="text-align: center;">
+    <table style="border-style: solid; border-color: black; text-align: left; width: 766px; height: 60px; background-color: rgb(238, 238, 238);" border="1" cellpadding="2" cellspacing="2">
+        <tbody>
+            <tr>
+                <td style="vertical-align: top;">Serial Number<br>
+                </td>
+                <td style="vertical-align: top;">Account Number<br>
+                </td>
+                <td style="vertical-align: top;">Name<br>
+                </td>
+                <td style="vertical-align: top;">Units Held<br>
+                </td>
+                <td style="vertical-align: top;">Right Due<br>
+                </td>
+                <td style="vertical-align: top;">Amount<br>
+                </td>
+                <td style="vertical-align: top;">Action<br>
+                </td>
+            </tr>
+            {% for holder in sharehohlder %}
+            <tr>
+                <td style="vertical-align: top;">{{holder['sn']}}<br>
+                </td>
+                <td style="vertical-align: top;">{{holder['acno']}}<br>
+                </td>
+                <td style="vertical-align: top;">{{holder['name']}}<br>
+                </td>
+                <td style="vertical-align: top;">{{holder['unit_held']}}<br>
+                </td>
+                <td style="vertical-align: top;">{{holder['right_due']}}<br>
+                </td>
+                <td style="vertical-align: top;">{{holder['amount']}}<br>
+                </td>
+                <td style="vertical-align: top;"><a href="">Print</a><br>
+                </td>
+            </tr>
+            {%endfor%}
+        </tbody>
+    </table>
+    <br>
+</div>
 {%endblock%}
