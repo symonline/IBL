@@ -25,24 +25,22 @@
                 <td style="vertical-align: top;">Action<br>
                 </td>
             </tr>
-            {% for holder in sharehohlder %}
             <tr>
-                <td style="vertical-align: top;">{{holder['sn']}}<br>
+                <td style="vertical-align: top;">{{sharehohlder['sn']}}<br>
                 </td>
-                <td style="vertical-align: top;">{{holder['acno']}}<br>
+                <td style="vertical-align: top;">{{sharehohlder['acno']}}<br>
                 </td>
-                <td style="vertical-align: top;">{{holder['name']}}<br>
+                <td style="vertical-align: top;">{{sharehohlder['name']}}<br>
                 </td>
-                <td style="vertical-align: top;">{{holder['unit_held']}}<br>
+                <td style="vertical-align: top;">{{right['unit_held']}}<br>
                 </td>
-                <td style="vertical-align: top;">{{holder['right_due']}}<br>
+                <td style="vertical-align: top;">{{right['right_due']}}<br>
                 </td>
-                <td style="vertical-align: top;">{{holder['amount']}}<br>
+                <td style="vertical-align: top;">{{right['amount']}}<br>
                 </td>
                 <td style="vertical-align: top;"><a href="">Print</a><br>
                 </td>
             </tr>
-            {%endfor%}
         </tbody>
     </table>
     <br>

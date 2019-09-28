@@ -35,7 +35,7 @@ class ShareHolder(db.Model):
     # from either your Form or thereabout )
     def get_shareholder_by_acno(cls, reg_acc_no): # whwre reg_no is an existing shareholder registrars account no
         if reg_acc_no:
-            return cls.query.filter_by(acno = reg_acc_no).all()
+            return cls.query.filter_by(acno = reg_acc_no).first()
     
     @classmethod
     def right_info(cls, reg_acc_no):# this should return a list of right owned by this account
@@ -56,7 +56,7 @@ class ShareHolder(db.Model):
             return False
 
     @classmethod
-    def get_shareholder_by(cls): # search by seti
+    def get_shareholder_by(cls,value,): # search by seti
         if cls.signal == 'chn':
             return cls.query.filter_by(chn = cls.item).first()
         elif cls.signal == 'bvn':
