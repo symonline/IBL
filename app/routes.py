@@ -9,7 +9,8 @@ from app.forms import SearchForm_logic, ConsentForm_logic
 def index():
     info='WELCOME TO THE IBL RIGHT OFFER TEST PAGE'
     
-    return render_template('index.html', title='HOME', info = info)
+    return redirect(url_for('search'))
+    #return render_template('search.html', title='HOME', info = info)
     '''
         if request.methods == 'POST':
             account = request.form['account_number']
@@ -24,23 +25,25 @@ def index():
 def search():
     sform = SearchForm_logic()
     if sform.validate_on_submit():
-        account_number=sform.identifier.data
-        sharehohlder = ShareHolder.get_shareholder_by_acno(account_number)
-        if sharehohlder is None:
+        sholder_name=sform.identifier.data
+        shareholder = ShareHolder.get_shareholder_by_name(sholder_name)
+        if shareholder is None:
             flash ("Share Holder Number is either wrong of Don't exist")
             return redirect(url_for('search'))
         flash('Right info requested for shareholder: {}, Identifier: {}'.format(sform.criteria.data, sform.identifier.data))
-        right = Right.get_right_by_acno(account_number)
-        return render_template('index.html', title='HOME', sharehohlder = sharehohlder, right = right)
+        for r in shareholder:
+            right = Right.get_right_by_acno(r.acno)
+            return render_template('result.html', title='HOME', shareholder = shareholder, right = right)
     # holders_detail=ShareHolder.get_shareholder_by_acno(request.form['?'])
     return render_template('search.html', title='Find Right',sform = sform)
 
-'''
-@app.route('/result',methods=['GET', 'POST'])
-def result():
-    holders_detail=ShareHolder.get_shareholder_by_acno(request.form['?'])
-    return render_template('index.html', holders_detail = holders_detail)
 
+@app.route('/print')
+def print():
+    right=search.right
+    shareholder = search.shareholder
+    return render_template('print.html', right=right ,shareholder = shareholder )
+'''
 @app.route('/result',methods=['GET', 'POST'])
 def consent():
     criteria = ['acno','bvn','chn']

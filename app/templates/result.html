@@ -1,3 +1,10 @@
+{% extends "base.html" %} {% block result %}
+<div class="">
+    <img src="../static/img/logo.png" alt="" class="" />
+    <h1>Succesful</h1>
+    <h2>Thank you!</h2>
+</div>
+
 <div style="text-align: center;">
     <table style="border-style: solid; border-color: black; text-align: left; width: 766px; height: 60px; background-color: rgb(238, 238, 238);" border="1" cellpadding="2" cellspacing="2">
         <tbody>
@@ -17,7 +24,7 @@
                 <td style="vertical-align: top;">Action<br>
                 </td>
             </tr>
-            {% for holder in holders_detail %}
+            {% for holder in shareholder %}
             <tr>
                 <td style="vertical-align: top;">{{holder['sn']}}<br>
                 </td>
@@ -25,17 +32,21 @@
                 </td>
                 <td style="vertical-align: top;">{{holder['name']}}<br>
                 </td>
-                <td style="vertical-align: top;">{{holder['unit_held']}}<br>
+                <td style="vertical-align: top;">{{right['unit_held']}}<br>
                 </td>
-                <td style="vertical-align: top;">{{holder['right_due']}}<br>
+                <td style="vertical-align: top;">{{right['right_due']}}<br>
                 </td>
-                <td style="vertical-align: top;">{{holder['amount']}}<br>
+                <td style="vertical-align: top;">{{right['amount']}}<br>
                 </td>
-                <td style="vertical-align: top;"><a href="">Print</a><br>
+                <td style="vertical-align: top;"><a href="{{url_for('print')}}">Print</a><br>
                 </td>
             </tr>
-            {%endfor%}
+            {% endfor %}
         </tbody>
     </table>
     <br>
 </div>
+<div>
+
+</div>
+{%endblock%}

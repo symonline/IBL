@@ -5,6 +5,8 @@ from datetime import datetime
 class ShareHolder(db.Model):
     item=''
     signal=''
+    criteria='' 
+    value=''
     __deleted_share_holders__=[]
     __updated_share_holders__=[]
     __created_share_holders__=[]
@@ -33,10 +35,21 @@ class ShareHolder(db.Model):
     # "registrars account number" (note: "reg_no" is just a search- 
     # argument which should be provided by you(developer) 
     # from either your Form or thereabout )
-    def get_shareholder_by_acno(cls, reg_acc_no): # whwre reg_no is an existing shareholder registrars account no
-        if reg_acc_no:
-            return cls.query.filter_by(acno = reg_acc_no).first()
-    
+    def get_shareholder_by_name(cls, sname): # whwre reg_no is an existing shareholder registrars account no
+        if sname:
+            return cls.query.filter_by(name = sname).all()
+            #return cls.query.filter(cls.name.like("%" + value + "%").all()
+
+    @classmethod
+    # To Help with the search for shareholder specifically by their
+    # "registrars account number" (note: "reg_no" is just a search- 
+    # argument which should be provided by you(developer) 
+    # from either your Form or thereabout )
+    def get_shareholder_by_acno(cls, ac_no): # whwre reg_no is an existing shareholder registrars account no
+        if ac_no:
+            return cls.query.filter_by(acno = ac_no).first()
+            #return cls.query.filter(cls.name.like("%" + value + "%").all()
+
     @classmethod
     def right_info(cls, reg_acc_no):# this should return a list of right owned by this account
         u=cls.get_shareholder_by_acno(reg_acc_no)
@@ -54,15 +67,7 @@ class ShareHolder(db.Model):
                 return False
         else:
             return False
-
-    @classmethod
-    def get_shareholder_by(cls,value,): # search by seti
-        if cls.signal == 'chn':
-            return cls.query.filter_by(chn = cls.item).first()
-        elif cls.signal == 'bvn':
-            return cls.query.filter_by(bvn = cls.item).first()
-        elif cls.signal == 'acno':
-            return cls.query.filter_by(acno = cls.item).first()
+        
     
     @classmethod
     # Help to retrieve all shareholder's record
@@ -128,6 +133,7 @@ class ShareHolder(db.Model):
 
 
 class Right(db.Model):
+
     item = ''
     signal = ''
     __deleted_right__ = []
@@ -151,8 +157,6 @@ class Right(db.Model):
     additional_price = db.Column(db.Integer, nullable=True)
     balance = db.Column(db.Integer, nullable=True)
     timestamp =db.Column(db.DateTime, default = datetime.utcnow(), index=True)
-    
-
     
     def __init__(self, **kwargs):
         self.__dict__.update(kwargs)
@@ -204,6 +208,7 @@ class Right(db.Model):
         elif cls.signal == 'acno':
             return cls.query.filter_by(acno = cls.item).all()
 
+   
     @classmethod
     def get_all_right(cls):
         return cls.query.all()
@@ -226,3 +231,35 @@ class Right(db.Model):
         
     def __repr__(self):
         return f'<Share Holder Name: {self.name}>'
+
+
+class SearchOption(db.Model):
+
+    __tablename__='search_option'
+
+    id = db.Column(db.Integer, primary_key=True, index=True, unique=True)
+    code = db.Column(db.String(7), index=True, unique=False)
+    display_name = db.Column(db.String(15), index=True, nullable=False)
+
+    def __init__(self, **kwargs):
+        self.__dict__.update(kwargs)
+
+    @classmethod
+    def add_new(self):
+        pass
+
+    def remove_existing(self):
+        pass
+    
+    def update_existing(self):
+        pass 
+
+    def __repr__(self):
+        return f'<Search_Option Code: {self.code}, Search_Option Display Name: {self.name}>'
+
+
+
+
+
+
+    

@@ -1,48 +1,23 @@
-{% extends "base.html" %} {% block result %}
-<div class="">
-    <img src="../static/img/logo.png" alt="" class="" />
-    <h1>Succesful</h1>
-    <h2>Thank you!</h2>
-</div>
-<!--# {{info }}<br> {{sharehohlder['acno']}}<br>{{sharehohlder['name']}}-->
+{% extends "base.html" %} {% block home %}
+<div>
 
-<div style="text-align: center;">
-    <table style="border-style: solid; border-color: black; text-align: left; width: 766px; height: 60px; background-color: rgb(238, 238, 238);" border="1" cellpadding="2" cellspacing="2">
-        <tbody>
-            <tr>
-                <td style="vertical-align: top;">Serial Number<br>
-                </td>
-                <td style="vertical-align: top;">Account Number<br>
-                </td>
-                <td style="vertical-align: top;">Name<br>
-                </td>
-                <td style="vertical-align: top;">Units Held<br>
-                </td>
-                <td style="vertical-align: top;">Right Due<br>
-                </td>
-                <td style="vertical-align: top;">Amount<br>
-                </td>
-                <td style="vertical-align: top;">Action<br>
-                </td>
-            </tr>
-            <tr>
-                <td style="vertical-align: top;">{{sharehohlder['sn']}}<br>
-                </td>
-                <td style="vertical-align: top;">{{sharehohlder['acno']}}<br>
-                </td>
-                <td style="vertical-align: top;">{{sharehohlder['name']}}<br>
-                </td>
-                <td style="vertical-align: top;">{{right['unit_held']}}<br>
-                </td>
-                <td style="vertical-align: top;">{{right['right_due']}}<br>
-                </td>
-                <td style="vertical-align: top;">{{right['amount']}}<br>
-                </td>
-                <td style="vertical-align: top;"><a href="">Print</a><br>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <br>
+    <head>
+        {%if title %}
+        <title>{{title}} IBL RIGHT ISSUE</title>
+        {%else%}
+        <title>{{title}} WELCOME TO IBL RIGHT ISSUE</title>
+        {%endif%}
+    </head>
+
+    {% with messages =get_flashed_messages() %} {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %} {% endwith %}
+    <div>
+        THIS IS THE INDEX PAGE
+    </div>
 </div>
-{%endblock%}
+{% endblock %}
