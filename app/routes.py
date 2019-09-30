@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for, flash
+from flask import render_template, request, redirect, url_for, flash,session
 from app import app, db
 # from flask_login import login_user
 from app.models import ShareHolder, Right
@@ -25,24 +25,33 @@ def index():
 def search():
     sform = SearchForm_logic()
     if sform.validate_on_submit():
-        sholder_name=sform.identifier.data
-        shareholder = ShareHolder.get_shareholder_by_name(sholder_name)
-        if shareholder is None:
+        sholder_name = sform.identifier.data
+        shareholders = ShareHolder.get_shareholder_by_name(sholder_name)
+        if shareholders is None:
             flash ("Share Holder Number is either wrong of Don't exist")
             return redirect(url_for('search'))
         flash('Right info requested for shareholder: {}, Identifier: {}'.format(sform.criteria.data, sform.identifier.data))
-        for r in shareholder:
+        for r in shareholders:
             right = Right.get_right_by_acno(r.acno)
-            return render_template('result.html', title='HOME', shareholder = shareholder, right = right)
+            return render_template ('result.html', title='HOME', shareholders = shareholders, right = right )
     # holders_detail=ShareHolder.get_shareholder_by_acno(request.form['?'])
     return render_template('search.html', title='Find Right',sform = sform)
 
 
-@app.route('/print')
+@app.route('/print', methods=['POST','GET'])
 def print():
-    right=search.right
-    shareholder = search.shareholder
-    return render_template('print.html', right=right ,shareholder = shareholder )
+    if request.method =='GET':
+        return redirect(url_for('search'))
+    elif request.method =='POST':
+        sn=request.form['sn']
+        acno =request.form['accountno']
+        name =request.form['name']
+        unit_held =request.form['unit_held']
+        right_due =  request.form['right_due']
+        amount = request.form['amount']
+
+        return render_template('ibl_report.html', sn=sn ,acno = acno ,name=name, unit_held=unit_held, \
+                        right_due=right_due,amount=amount)
 '''
 @app.route('/result',methods=['GET', 'POST'])
 def consent():

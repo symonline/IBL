@@ -24,22 +24,24 @@
                 <td style="vertical-align: top;">Action<br>
                 </td>
             </tr>
-            {% for holder in shareholder %}
+            {% for holder in shareholders %}
             <tr>
-                <td style="vertical-align: top;">{{holder['sn']}}<br>
-                </td>
-                <td style="vertical-align: top;">{{holder['acno']}}<br>
-                </td>
-                <td style="vertical-align: top;">{{holder['name']}}<br>
-                </td>
-                <td style="vertical-align: top;">{{right['unit_held']}}<br>
-                </td>
-                <td style="vertical-align: top;">{{right['right_due']}}<br>
-                </td>
-                <td style="vertical-align: top;">{{right['amount']}}<br>
-                </td>
-                <td style="vertical-align: top;"><a href="{{url_for('print')}}">Print</a><br>
-                </td>
+                <form method="post" action="{{url_for('print')}}">
+                    <td style="vertical-align: top;">{{holder['sn']}}<br> <input readonly="readonly" value="{{holder['sn']}}" name="sn">
+                    </td>
+                    <td style="vertical-align: top;">{{holder['acno']}}<br> <input readonly="readonly" value="{{holder['acno']}}" name="accountno">
+                    </td>
+                    <td style="vertical-align: top;">{{holder['name']}}<br> <input readonly="readonly" value="{{holder['name']}}" name="name">
+                    </td>
+                    <td style="vertical-align: top;">{{right['unit_held']}}<br> <input readonly="readonly" value="{{right['unit_held']}}" name="unit_held">
+                    </td>
+                    <td style="vertical-align: top;">{{right['right_due']}}<br> <input readonly="readonly" value="{{right['right_due']}}" name="right_due">
+                    </td>
+                    <td style="vertical-align: top;">{{right['amount']}}<br> <input readonly="readonly" value="{{right['amount']}}" name="amount">
+                    </td>
+                    <input tabindex="1" name="submit" value="submit" type="submit">
+                    </td>
+                </form>
             </tr>
             {% endfor %}
         </tbody>
