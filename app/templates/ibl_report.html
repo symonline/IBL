@@ -49,7 +49,7 @@
                 <div class="flex-left">
                     <div>Issuing House</div><img src="..//apel.png" width="50px" /></div>
                 <div class="flex-right">
-                    A/C Number:{{acno}}<br> Unit Held:{{unit_held}} Units<br> Right Due:{{right_due}} Units<br> Amount Payable:{{amount}} Naira<br>
+                    A/C Number:{{session.get('ACNO')}}<br> Unit Held:{{session.get('UNIT_HELD')}} Units<br> Right Due:{{session.get('RIGHT_DUE')}} Units<br> Amount Payable:{{session.get('AMOUNT')}} Naira<br> SN: {{sn}}<br>
                 </div>
             </div>
             <hr>
@@ -102,7 +102,7 @@
                             <p><b>Narration:</b></p>
                         </td>
                         <td valign="top">
-                            <p><i>[{{name}}]s payment for INTERNATIONAL BREWERIES PLC</i> RIGHTS</p>
+                            <p><i>{{session.get('NAME')}}s payment for INTERNATIONAL BREWERIES PLC</i> RIGHTS</p>
                         </td>
                     </tr>
 
@@ -147,7 +147,7 @@
                             <p><b>Number of ordinary shares accepted</b></p>
                         </td>
                         <td valign="top">
-                            <p>[No of shares input]</p>
+                            <p>{{right_applied}} Units</p>
                         </td>
                     </tr>
 
@@ -156,7 +156,7 @@
                             <p><b>Additional ordinary shares applied for:</b></p>
                         </td>
                         <td valign="top">
-                            <p>[Additional ordinary shares applied for]</p>
+                            <p>{{additional_right_applied}} Units </p>
                         </td>
                     </tr>
 

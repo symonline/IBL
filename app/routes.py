@@ -23,54 +23,116 @@ def index():
     '''
 @app.route('/search', methods=['GET', 'POST'])
 def search():
+    # load the form object with arguments from form.py
     sform = SearchForm_logic()
+    # check whether the form validation passes all conditions 
     if sform.validate_on_submit():
+        # load the the account number/ name /etc from the form class (form.py)
         sholder_name = sform.identifier.data
+        # load the Shareholder model db method/function by passing form(name/acc_no/etc) agument
         shareholders = ShareHolder.get_shareholder_by_name(sholder_name)
-        if shareholders is None:
-            flash ("Share Holder Number is either wrong of Don't exist")
+        if not shareholders:
+            # display a not succefull message and return the user back to the Search page
+            flash ("Share Holder Number is either wrong or Don't exist")
             return redirect(url_for('search'))
-        flash('Right info requested for shareholder: {}, Identifier: {}'.format(sform.criteria.data, sform.identifier.data))
-        for r in shareholders:
-            right = Right.get_right_by_acno(r.acno)
-            return render_template ('result.html', title='HOME', shareholders = shareholders, right = right )
-    # holders_detail=ShareHolder.get_shareholder_by_acno(request.form['?'])
-    return render_template('search.html', title='Find Right',sform = sform)
+        # display a successful message from validation on the base template
+        flash(f'Right info requested for Shareholder: {sform.criteria.data}, Identifier: { sform.identifier.data}')
+        # get the equivallent rights details
+        # on the assumption that a shareholder to a right (one to one relationship)
+        # name=session[shareholders]:
+        right = Right.get_right_by_acno(shareholders.acno)
+        # send the Shareholder bio details with his/her Right detail
+        # to be displayed / rendered on the result.html page
+        session['ACNO'] = shareholders.acno
+        session['NAME'] = shareholders.name
+        session['SN'] = shareholders.sn
+        session['RACNO'] = right.acno
+        session['RIGHT_DUE'] = right.right_due
+        session['UNIT_HELD'] = right.unit_held
+        session['COMP'] = right.company
+        session['RDATE'] = right.right_date
+        session['RIGHT_APPLIED'] = right.right_applied
+        session['ADDITIONAL'] = right.additional_apply
+        session['AMOUNT'] = right.amount
+        return render_template ('result.html', 
+                        title='HOME', 
+                        acno = session.get('ACNO'), 
+                        racno = session.get('RACNO'),
+                        name = session.get('NAME'),
+                        sn = session.get('SN'),
+                        right_due = session.get('RIGHT_DUE'),
+                        unit_held = session.get('UNIT_HELD'),
+                        right_applied = session.get('RIGHT_APPLIED'),
+                        additional = session.get('ADDITIONAL'),
+                        amount = session.get('AMOUNT')
+                        )
+    # Always return the search page if validation fail
+    return render_template('search.html', title='Find Right', sform = sform)
+
+
+@app.route('/acceptance', methods=['GET','POST'])
+def acceptance():
+    #if request.method == 'GET'
+    if request.method =='POST':
+        '''
+        unit_applied = session.get('RIGHT_APPLIED')
+        unit_due = session.get('RIGHT_DUE')
+        addition = session.get('ADDITIONAL_RIGHT')
+        '''
+        
+        session['RIGHT_APPLIED'] = request.form.get('applied',type=int)
+        session['ADDITIONAL'] = request.form.get('additional',type=int)
+        if not (int(session.get('RIGHT_APPLIED')) or int(session.get('ADDITIONAL'))):
+            session['RIGHT_APPLIED']=0
+            session['ADDITIONAL']=0
+
+        # Some RULES before for right is accepted
+        if int(session.get('RIGHT_APPLIED')) > int(session.get('RIGHT_DUE')) :
+            flash ("Unit Applied for Can not be Greater than Unit Entitled!")
+            session['SUBMITTED']=False
+            return render_template ('result.html')
+        elif int(session.get('RIGHT_APPLIED')) != int(session.get('RIGHT_DUE')) and int(session.get('ADDITIONAL')) :
+            flash ("Additional Unit is not Allowed while Entitled Right Has Not Been Fully Accepted!")
+            session['SUBMITTED']=False
+            return render_template ('result.html')   
+
+        account = int(session.get('ACNO'))
+        rights=Right.get_right_by_acno(account)
+        
+        if not (rights.update_additional_right(request.form.get('additional',type=int)) or 
+            rights.update_right_applied(request.form.get('applied',type=int))) :
+            flash ("Additional or Empty: fields can not be blank ")
+            session['SUBMITTED']=False
+            return render_template ('result.html')
+        flash ("Additional Unit Saved ")
+        session['SUBMITTED']=True
+        return render_template('ibl_report.html', 
+                        right_applied=int(session.get('RIGHT_APPLIED')), 
+                        additional_right_applied = int(session.get('ADDITIONAL')))
+
+    #request.method =='GET' and session.get('RIGHT_APPLIED'):
+    return render_template ('result.html')
 
 
 @app.route('/print', methods=['POST','GET'])
 def print():
-    if request.method =='GET':
+    
+    if request.method =='POST':
+       
+        session['RIGHT_APPLIED_2'] = request.form.get('applied',type=int)
+        session['ADDITIONAL_RIGHT'] =  request.form.get('additional',type=int)
+
+        return render_template('ibl_report.html', 
+                        right_applied=session.get('RIGHT_APPLIED_2') , 
+                        additional_right_applied = session.get('ADDITIONAL_RIGHT')
+                        )
+    elif request.method =='GET': 
+        if  'RIGHT_APPLIED_2' in session:
+            return redirect(url_for('print'))
         return redirect(url_for('search'))
-    elif request.method =='POST':
-        sn=request.form['sn']
-        acno =request.form['accountno']
-        name =request.form['name']
-        unit_held =request.form['unit_held']
-        right_due =  request.form['right_due']
-        amount = request.form['amount']
-
-        return render_template('ibl_report.html', sn=sn ,acno = acno ,name=name, unit_held=unit_held, \
-                        right_due=right_due,amount=amount)
-'''
-@app.route('/result',methods=['GET', 'POST'])
-def consent():
-    criteria = ['acno','bvn','chn']
-    form_args = request.form['?']
-    item = Right(item=form_args)
-    if  criteria['acno'] == request.form['?']:
-        holders_right=Right.get_right_by(request.form['?']) # when acno is parsed
-        return render_template('result.html', holders_detail = holders_right )
-   
-    elif criteria['bvn'] == request.form['?']:
-        holders_right=Right.get_right_by(request.form['?']) # when bvn is parsed
-        return render_template('result.html', holders_detail = holders_right )
-
-    elif criteria['chn'] == request.form['?']:
-        holders_right=Right.get_right_by(request.form['?']) # when chn is parsed
-        return render_template('result.html', holders_detail = holders_right )
-    else: 
-        return url_for('consent')
 
 
-'''
+@app.route('/convert2pdf',methods=['GET', 'POST'])
+def convert2pdf():
+    # convert to pdf and clear session
+    pass

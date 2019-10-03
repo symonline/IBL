@@ -20,35 +20,52 @@
                 <td style="vertical-align: top;">Right Due<br>
                 </td>
                 <td style="vertical-align: top;">Amount<br>
-                </td>
-                <td style="vertical-align: top;">Action<br>
-                </td>
             </tr>
-            {% for holder in shareholders %}
+
             <tr>
-                <form method="post" action="{{url_for('print')}}">
-                    <td style="vertical-align: top;">{{holder['sn']}}<br> <input readonly="readonly" value="{{holder['sn']}}" name="sn">
-                    </td>
-                    <td style="vertical-align: top;">{{holder['acno']}}<br> <input readonly="readonly" value="{{holder['acno']}}" name="accountno">
-                    </td>
-                    <td style="vertical-align: top;">{{holder['name']}}<br> <input readonly="readonly" value="{{holder['name']}}" name="name">
-                    </td>
-                    <td style="vertical-align: top;">{{right['unit_held']}}<br> <input readonly="readonly" value="{{right['unit_held']}}" name="unit_held">
-                    </td>
-                    <td style="vertical-align: top;">{{right['right_due']}}<br> <input readonly="readonly" value="{{right['right_due']}}" name="right_due">
-                    </td>
-                    <td style="vertical-align: top;">{{right['amount']}}<br> <input readonly="readonly" value="{{right['amount']}}" name="amount">
-                    </td>
-                    <input name="submit" value="submit" type="submit">
-                    </td>
-                </form>
+                <td style="vertical-align: top;">{{session.get('SN')}} <br>
+                </td>
+                <td style="vertical-align: top;">{{session.get('ACNO')}}<br>
+                </td>
+                <td style="vertical-align: topnam;">{{session.get('NAME')}}<br>
+                </td>
+                <td style="vertical-align: top;">{{session.get('UNIT_HELD')}}<br>
+                </td>
+                <td style="vertical-align: top;">{{session.get('RIGHT_DUE')}}<br>
+                </td>
+                <td style="vertical-align: top;">{{session.get('AMOUNT')}}<br>
             </tr>
-            {% endfor %}
+            <div>
+            </div>
         </tbody>
     </table>
     <br>
+    <p><br>
+        <table style="border-style: solid; border-color: black; text-align: left; width: 766px; height: 60px; background-color: rgb(238, 238, 238);" cellpadding="2" cellspacing="2">
+            <tbody>
+                <tr>
+                    </td>
+                    <td style="vertical-align: top;">Number of ordinary<br>shares accepted<br>
+                    </td>
+                    <td style="vertical-align: top;">Additional ordinary<br>shares applied for:<br>
+                    </td>
+                </tr>
+                <tr>
+                    <form method="post" action="{{url_for('acceptance')}}">
+                        </td>
+                        <td style="vertical-align: top;"><input value="{{session.get('RIGHT_APPLIED')}}" name="applied"><br>
+                        </td>
+                        <td style="vertical-align: top;"><input value="{{session.get('ADDITIONAL')}}" name="additional"><br>
+                        </td>
+                        </td> <input name="submit" value="submit" type="submit">
+                        </td>
+                    </form>
+                </tr>
+            </tbody>
+        </table>
+    </p>
 </div>
 <div>
 
 </div>
-{%endblock%}
+{% endblock %}

@@ -10,6 +10,7 @@ class SearchForm_logic(FlaskForm):
      
 
 class ConsentForm_logic(FlaskForm):
-    accepted_right = StringField('Accepted_right', validators=[DataRequired()])
-    find = SubmitField('Find')
+    accepted_unit = StringField('Shares Accepted', validators=[])
+    additional_unit = StringField('Additional Unit', validators=[])
+    submit = SubmitField('submit')
     
