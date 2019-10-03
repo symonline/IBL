@@ -151,7 +151,7 @@ class Right(db.Model):
     holder= db.Column(db.Integer, db.ForeignKey('share_holder.id'))
     amount = db.Column(db.Float(), nullable=True)
     company = db.Column(db.String(140), nullable=True)
-    right_date=db.Column(db.DateTime)
+    right_date=db.Column(db.String(64))
     right_applied=db.Column(db.Integer, nullable=True)
     additional_right_applied= db.Column(db.Integer, nullable=True)
     additional_apply = db.Column(db.Integer, nullable=True)

@@ -1,35 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <!--Import Google Icon Font-->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
 
-<head>
+    <!-- Compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <!--Custom CSS-->
+    <link rel="stylesheet" href="../static/css/styles.css" />
+
     {%if title %}
-    <title>{{title}} IBL RIGHT ISSUE</title>
+    <title>{{ title }} IBL RIGHT ISSUE</title>
     {%else%}
-    <title>{{title}} WELCOME TO IBL RIGHT ISSUE</title>
+    <title>{{ title }} WELCOME TO IBL RIGHT ISSUE</title>
     {%endif%}
-</head>
 
-<body>
-    <div>
-        <img style="width: 101px; height: 95px;" id="Picture 57" src="../static/img/logo-smaller.png" alt="APEL" class=""> <img id="Picture 57" src="../static/img/nlogo_0.png" alt="IBL" class="">
-    </div>
-    <div>
-        IBL:
-        <a href="{{url_for('search')}}">Home</a>
-        <a href="{{url_for('index')}}">Index</a><br>
-    </div>
-    {% with messages =get_flashed_messages() %} {% if messages %}
-    <ul>
-        {% for message in messages %}
-        <li>{{ message }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %} {% endwith %}
-    <div>
-        <p>{% block home %} {% endblock %}</p>
-        <p>{% block search_form %} {% endblock %}</p>
-        <P>{% block result %} {% endblock %}</P>
-    </div>
-</body>
+    <style>
+      #stylehome {
+        background-image: image("/app/static/img/ibl.png");
+        background-position: center;
+        background-size: cover;
+      }
+    </style>
+  </head>
 
+  <body>
+    <!--Outer div start-->
+    <div class="container">
+      <!--Inner div end-->
+      <div class="">
+        <div class="flex-container">
+          <a href="/">
+            <img
+              id="Picture 57"
+              src="../static/img/nlogo_0.png"
+              alt="IBL"
+              class=""
+            />
+          </a>
+        </div>
+        <div id="stylehome">
+          <hr />
+        </div>
+        <div class="alertstyle">
+          {% with messages =get_flashed_messages() %}
+        </div>
+        {% if messages %}
+        <ul>
+          {% for message in messages %}
+          <li>
+            <h6>{{ message }}</h6>
+          </li>
+          {% endfor %}
+        </ul>
+        {% endif %} {% endwith %}
+        <div class="flex-container">
+          <p>{% block home %} {% endblock %}</p>
+          <p>{% block search_form %} {% endblock %}</p>
+          <P>{% block result %} {% endblock %}</P>
+        </div>
+      </div>
+      <!--Inner div end-->
+    </div>
+    <!--Outer div end-->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script
+      src="https://code.jquery.com/jquery-1.12.4.min.js"
+      integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+      integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  </body>
 </html>

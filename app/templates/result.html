@@ -1,54 +1,61 @@
 {% extends "base.html" %} {% block result %}
-<div class="">
-    <img src="../static/img/logo.png" alt="" class="" />
-    <h1>Succesful</h1>
-    <h2>Thank you!</h2>
-</div>
 
-<div style="text-align: center;">
-    <table style="border-style: solid; border-color: black; text-align: left; width: 766px; height: 60px; background-color: rgb(238, 238, 238);" cellpadding="2" cellspacing="2">
-        <tbody>
-            <tr>
-                <td style="vertical-align: top;">Serial Number<br>
-                </td>
-                <td style="vertical-align: top;">Account Number<br>
-                </td>
-                <td style="vertical-align: top;">Name<br>
-                </td>
-                <td style="vertical-align: top;">Units Held<br>
-                </td>
-                <td style="vertical-align: top;">Right Due<br>
-                </td>
-                <td style="vertical-align: top;">Amount<br>
-                </td>
-                <td style="vertical-align: top;">Action<br>
-                </td>
-            </tr>
-            {% for holder in shareholders %}
-            <tr>
-                <form method="post" action="{{url_for('print')}}">
-                    <td style="vertical-align: top;">{{holder['sn']}}<br> <input readonly="readonly" value="{{holder['sn']}}" name="sn">
-                    </td>
-                    <td style="vertical-align: top;">{{holder['acno']}}<br> <input readonly="readonly" value="{{holder['acno']}}" name="accountno">
-                    </td>
-                    <td style="vertical-align: top;">{{holder['name']}}<br> <input readonly="readonly" value="{{holder['name']}}" name="name">
-                    </td>
-                    <td style="vertical-align: top;">{{right['unit_held']}}<br> <input readonly="readonly" value="{{right['unit_held']}}" name="unit_held">
-                    </td>
-                    <td style="vertical-align: top;">{{right['right_due']}}<br> <input readonly="readonly" value="{{right['right_due']}}" name="right_due">
-                    </td>
-                    <td style="vertical-align: top;">{{right['amount']}}<br> <input readonly="readonly" value="{{right['amount']}}" name="amount">
-                    </td>
-                    <input name="submit" value="submit" type="submit">
-                    </td>
-                </form>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <br>
+<div class="container" style="text-align: center;">
+  <table
+    class="responsive-table"
+    style="text-align: left; background-color: rgb(238, 238, 238);"
+    cellpadding="5"
+    cellspacing="5"
+  >
+    <tbody>
+      <tr>
+        <th style="vertical-align: top;">Serial Number<br /></th>
+        <th style="vertical-align: top;">Account Number<br /></th>
+        <th style="vertical-align: top;">Name<br /></th>
+        <th style="vertical-align: top;">Units Held<br /></th>
+        <th style="vertical-align: top;">Right Due<br /></th>
+        <th style="vertical-align: top;">Amount<br /></th>
+      </tr>
+      {% for holder in shareholders %}
+      <tr>
+        <div class="hide">
+          <td style="vertical-align: top;">{{ holder["sn"] }}</td>
+          <td style="vertical-align: top;">{{ holder["acno"] }}</td>
+          <td style="vertical-align: top;">{{ holder["name"] }}</td>
+          <td style="vertical-align: top;">{{ right["unit_held"] }}</td>
+          <td style="vertical-align: top;">{{ right["right_due"] }}</td>
+          <td style="vertical-align: top;">{{ right["amount"] }}</td>
+        </div>
+      </tr>
+      <tr>
+        <td colspan="3">
+          <input
+            name="Accepted Unit"
+            type="number"
+            value="accepted-unit"
+            placeholder="Accepted Units"
+          />
+        </td>
+        <td colspan="3">
+          <input
+            name="Additional Unit"
+            type="number"
+            value="additional-unit"
+            placeholder="Additional Units"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td colspan="4">
+          <input name="print" value="print" type="submit" />
+        </td>
+        <td></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <br />
 </div>
-<div>
-
-</div>
+<div></div>
 {%endblock%}

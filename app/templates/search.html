@@ -1,24 +1,29 @@
 {% extends "base.html" %} {% block search_form %}
+
 <div>
-    <h1> SEARCH RIGHT</h1>
-    <!--from form.py  -->
+  <h5>Search right</h5>
+  <!--from form.py  -->
 
-    <form action="" method="POST">
-        {{sform.hidden_tag()}}
-        <p>
-            {{sform.criteria.label }}<br> {{sform.criteria}}<br> {% for error in sform.criteria.errors %}
-            <span style="color:red;">{{error}}</span> {%endfor%}
-        </p>
-        <p>
-            {{sform.identifier.label }}<br> {{sform.identifier}}<br> {% for error in sform.identifier.errors %}
-            <span style="color:red;">{{error}}</span> {%endfor%}
-        </p>
-        <p>
-            {{sform.search}}
-        </p>
+  <form action="" method="POST">
+    {{ sform.hidden_tag() }}
+    <div class="alertstyle">
+      <p>
+        {{ sform.criteria.label }}<br />
+        {{ sform.criteria }}<br />
+        {% for error in sform.criteria.errors %}
+        <span style="text-decoration-color:red;">{{ error }}</span> {%endfor%}
+      </p>
 
-    </form>
+      <p>
+        {{ sform.identifier.label }}<br />
+        {{ sform.identifier }}<br />
+        {% for error in sform.identifier.errors %}
+        <span style="text-decoration-color:red;">{{ error }}</span> {%endfor%}
+      </p>
+    </div>
+    <p>
+      {{ sform.search }}
+    </p>
+  </form>
 </div>
-
-
 {%endblock%}

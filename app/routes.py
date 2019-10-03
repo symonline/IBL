@@ -27,8 +27,8 @@ def search():
     if sform.validate_on_submit():
         sholder_name = sform.identifier.data
         shareholders = ShareHolder.get_shareholder_by_name(sholder_name)
-        if shareholders is None:
-            flash ("Share Holder Number is either wrong of Don't exist")
+        if not shareholders:
+            flash ("Share Holder Number is either wrong or Doesn't exist")
             return redirect(url_for('search'))
         flash('Right info requested for shareholder: {}, Identifier: {}'.format(sform.criteria.data, sform.identifier.data))
         for r in shareholders:

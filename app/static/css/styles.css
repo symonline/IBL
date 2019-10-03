@@ -1,92 +1,99 @@
 .top {
-    background: #cc8400;
-    color: #f2f2f2;
+  background: #029640;
+  color: #f2f2f2;
 }
 
+.alertstyle {
+  text-decoration-color: red;
+  font-style: italic;
+}
 .flex-container {
-    display: flex;
-    justify-content: center;
-    justify-content: space-around
+  display: flex;
+  justify-content: center;
+  justify-content: space-around;
 }
 
 .flex-right {
-    text-align: right;
-    justify-content: right;
-    line-height: 75px;
+  text-align: right;
+  justify-content: right;
+  line-height: 75px;
 }
 
 .flex-left {
-    text-align: left;
-    justify-content: left;
+  text-align: left;
+  justify-content: left;
 }
 
 .slender {
-    font-size: 10px;
-    font-style: italic;
+  font-size: 10px;
+  font-style: italic;
 }
 
+#stylehome {
+  background-image: url(../img/ibl.png);
+}
 .jumbotron {
-    line-height: 15px;
-    padding: 5px;
-    margin: 0px;
+  line-height: 15px;
+  padding: 5px;
+  margin: 0px;
 }
 
 .jumbo {
-    line-height: 15px;
-    padding: 5px;
-    margin: 0px;
+  line-height: 15px;
+  padding: 5px;
+  margin: 0px;
 }
 
-input[type=text],
+input[type="text"],
 select {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
 
-input[type=submit] {
-    width: 100%;
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+input[type="submit"] {
+  width: 100%;
+  background-color: #4caf50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
-input[type=submit]:hover {
-    background-color: #45a049;
+input[type="submit"]:hover {
+  background-color: #45a049;
 }
 
 #investors {
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
 }
 
 #investors td,
 #customers th {
-    border: 1px solid #ddd;
-    padding: 8px;
+  border: 1px solid #ddd;
+  padding: 8px;
 }
 
 #investors tr:nth-child(even) {
-    background-color: #f2f2f2;
+  background-color: #f2f2f2;
 }
 
 #investors tr:hover {
-    background-color: #ddd;
+  background-color: #ddd;
 }
 
 #investors th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #4CAF50;
-    color: white;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4caf50;
+  color: white;
 }

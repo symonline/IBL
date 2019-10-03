@@ -1,8 +1,9 @@
-from flask import Flask
+from flask import Flask, render_template, make_response
 from flask_sqlalchemy import SQLAlchemy
 from config import Config
 from flask_migrate import Migrate
 import sqlite3
+import pdfkit
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -32,4 +33,4 @@ from app import routes, models
 if __name__ == '__main__':
      # Create tables
     db.create_all()
-    app.run(host='127.0.0.1', port=8000, debueg=True)
+    app.run(host='127.0.0.1', port=8000, debug=True)
