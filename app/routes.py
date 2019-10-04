@@ -79,19 +79,41 @@ def acceptance():
         unit_due = session.get('RIGHT_DUE')
         addition = session.get('ADDITIONAL_RIGHT')
         '''
-        
         session['RIGHT_APPLIED'] = request.form.get('applied',type=int)
         session['ADDITIONAL'] = request.form.get('additional',type=int)
-        if not (int(session.get('RIGHT_APPLIED')) or int(session.get('ADDITIONAL'))):
+
+        consent = session.get('RIGHT_APPLIED')
+        added = session.get('ADDITIONAL')
+        if not (consent) :
+            flash ("Consent field can not be empty ")
+            session['SUBMITTED']=False
+            return render_template ('result.html')
+        consent_check = isinstance(consent, int)
+        added_check = isinstance(added, int)
+
+        if not consent_check: #or added_check :
+            flash ("Applied Unit field must be numeric ")
+            session['SUBMITTED']=False
+            return render_template ('result.html')
+        
+        if not added_check: #or added_check :
+            flash ("Additional Unit field must be numeric ")
+            consent=0
+            session['ADDITIONAL']=0
+            #session['SUBMITTED']=False
+            #return render_template ('result.html')
+
+        if not (consent or added):
             session['RIGHT_APPLIED']=0
             session['ADDITIONAL']=0
 
         # Some RULES before for right is accepted
-        if int(session.get('RIGHT_APPLIED')) > int(session.get('RIGHT_DUE')) :
+        if int(consent) > int(session.get('RIGHT_DUE')) :
             flash ("Unit Applied for Can not be Greater than Unit Entitled!")
             session['SUBMITTED']=False
             return render_template ('result.html')
-        elif int(session.get('RIGHT_APPLIED')) != int(session.get('RIGHT_DUE')) and int(session.get('ADDITIONAL')) :
+
+        elif int(consent) != int(session.get('RIGHT_DUE')) and int(added) :
             flash ("Additional Unit is not Allowed while Entitled Right Has Not Been Fully Accepted!")
             session['SUBMITTED']=False
             return render_template ('result.html')   
@@ -99,38 +121,16 @@ def acceptance():
         account = int(session.get('ACNO'))
         rights=Right.get_right_by_acno(account)
         
-        if not (rights.update_additional_right(request.form.get('additional',type=int)) or 
-            rights.update_right_applied(request.form.get('applied',type=int))) :
-            flash ("Additional or Empty: fields can not be blank ")
-            session['SUBMITTED']=False
-            return render_template ('result.html')
-        flash ("Additional Unit Saved ")
+        rights.update_right_applied(consent)
+        rights.update_additional_right(added) 
+        flash ("Consent Information has been is saved")
         session['SUBMITTED']=True
         return render_template('ibl_report.html', 
-                        right_applied=int(session.get('RIGHT_APPLIED')), 
-                        additional_right_applied = int(session.get('ADDITIONAL')))
+                        right_applied=int(consent), 
+                        additional_right_applied = int(added))
 
     #request.method =='GET' and session.get('RIGHT_APPLIED'):
     return render_template ('result.html')
-
-
-@app.route('/print', methods=['POST','GET'])
-def print():
-    
-    if request.method =='POST':
-       
-        session['RIGHT_APPLIED_2'] = request.form.get('applied',type=int)
-        session['ADDITIONAL_RIGHT'] =  request.form.get('additional',type=int)
-
-        return render_template('ibl_report.html', 
-                        right_applied=session.get('RIGHT_APPLIED_2') , 
-                        additional_right_applied = session.get('ADDITIONAL_RIGHT')
-                        )
-    elif request.method =='GET': 
-        if  'RIGHT_APPLIED_2' in session:
-            return redirect(url_for('print'))
-        return redirect(url_for('search'))
-
 
 @app.route('/convert2pdf',methods=['GET', 'POST'])
 def convert2pdf():
