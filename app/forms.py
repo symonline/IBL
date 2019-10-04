@@ -4,7 +4,7 @@ from wtforms.validators import DataRequired
 
 
 class SearchForm_logic(FlaskForm):
-    criteria = SelectField('Criteria', choices=[('name', 'NAME')])
+    criteria = SelectField('Criteria', choices=[('name', 'NAME')], render_kw={"placeholder":"Start typing ..."})
     identifier = StringField('Identifier', validators=[DataRequired()])
     search = SubmitField('Search')
      
