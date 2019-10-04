@@ -29,8 +29,9 @@ def search():
     if sform.validate_on_submit():
         # load the the account number/ name /etc from the form class (form.py)
         sholder_name = sform.identifier.data
+        schoice = sform.criteria.data
         # load the Shareholder model db method/function by passing form(name/acc_no/etc) agument
-        shareholders = ShareHolder.get_shareholder_by_name(sholder_name)
+        shareholders = ShareHolder.get_shareholder_by_value(schoice,sholder_name)
         if not shareholders:
             # display a not succefull message and return the user back to the Search page
             flash ("Share Holder Number is either wrong or Don't exist")
