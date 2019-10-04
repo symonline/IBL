@@ -50,6 +50,19 @@ class ShareHolder(db.Model):
         if ac_no:
             return cls.query.filter_by(acno = ac_no).first()
             # return cls.query.filter(cls.name.like("%" + value + "%")).all()
+    
+    @classmethod
+    def get_shareholder_by_value(cls, choice, value): # whwre reg_no is an existing shareholder registrars account no
+        if value :
+            if choice=='name':
+                return cls.query.filter_by(name = value).first()
+            elif choice=='acno':
+                return cls.query.filter_by(acno = value).first()
+            elif choice=='sn':
+                return cls.query.filter_by(sn = value).first()
+            else:
+                return False
+            # return cls.query.filter(cls.name.like("%" + value + "%")).all()
 
     @classmethod
     def right_info(cls, reg_acc_no):# this should return a list of right owned by this account
