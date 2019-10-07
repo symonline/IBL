@@ -20,19 +20,78 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
-    <link rel="stylesheet" href="../static/css/styles.css" />
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <link type="text/css" rel="stylesheet" href="../static/css/styles.css" />
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <style>
+      .top {
+        background: primary;
+        color: #f2f2f2;
+      }
+      body{
+        background-color: #ffffff;
+      }
+      .flex-container {
+        display: flex;
+        justify-content: center;
+        justify-content: space-around;
+      }
+
+      .flex-right {
+        text-align: right;
+        justify-content: right;
+        line-height: 75px;
+      }
+
+      .flex-left {
+        text-align: left;
+        justify-content: left;
+      }
+
+      .slender {
+        font-size: 10px;
+        font-style: italic;
+      }
+      .jumbotron {
+        line-height: 15px;
+        padding: 2px;
+        margin: 0px;
+      }
+
+      .jumbo {
+        line-height: 15px;
+        padding: 5px;
+        margin: 0px;
+      }
+      .alertstyle {
+        text-decoration-color: red;
+        font-family: "Segoe UI", Roboto, Cantarell, "Open Sans",
+          "Helvetica Neue", sans-serif;
+        text-align: center;
+        vertical-align: middle;
+        color: red;
+      }
+      .astyle{
+        line-height: 10px;
+        font-size: medium;
+        font-display: color: #fff0ff;
+      }
+    </style>
   </head>
 
   <body>
     <div class="container z-depth-3">
-      <div class="container-fluid top">
-        <h5 class="flex-container row"><b>ACCEPTANCE/RENUNCIATION FORM</b></h5>
+      <div class="container-fluid top center">
+        <h5 class="container row"><b>ACCEPTANCE/RENUNCIATION FORM</b></h5>
         <div class="container">
           <h6 class="flex-container row"><b>INTERNATIONAL BREWERIES PLC</b></h6>
 
@@ -55,15 +114,23 @@
         <hr height="5px" />
 
         <div class="flex-container">
-          <div class="flex-left">
+          <div class="flex-left center">
             <div>Issuing House</div>
-            <img src="..//apel.png" width="50px" />
+            <img
+              class="z-depth-2"
+              src="../static/chapelhill.jpg"
+              width="100px"
+            />
           </div>
-          <div class="flex-right">
-            A/C Number:{{ acno }}<br />
-            Unit Held:{{ unit_held }} Units<br />
-            Right Due:{{ right_due }} Units<br />
-            Amount Payable:{{ amount }} Naira<br />
+          <div class="flex-right astyle">
+            <p><b>A/C Number:</b> {{ session.get("ACNO") }}</p>
+            <br />
+            <p><b>Unit Held:</b> {{ session.get("UNIT_HELD") }} Units</p>
+            <br />
+            <p><b>Right Due:</b>{{ session.get("RIGHT_DUE") }} Units</p>
+            <br />
+            <p><b>Amount Payable:</b> {{ session.get("AMOUNT") }} Naira</p>
+            <br />
           </div>
         </div>
         <hr />
@@ -101,7 +168,7 @@
             >
           </p>
         </div>
-        <table id="investors" border="1" cellspacing="0" cellpadding="0">
+        <table border="1" cellspacing="0" cellpadding="0">
           <tbody>
             <tr>
               <td valign="top">
@@ -136,13 +203,14 @@
               </td>
               <td valign="top">
                 <p>
-                  <i>[{{ name }}]s payment for INTERNATIONAL BREWERIES PLC</i>
-                  RIGHTS
+                  {{ session.get("NAME") }}'s payment for INTERNATIONAL
+                  BREWERIES PLC RIGHTS
                 </p>
               </td>
             </tr>
           </tbody>
         </table>
+        <br />
         <div class="slender">
           <p>
             3. Shareholders accepting their provisional allotment partially
@@ -202,14 +270,14 @@
       </div>
       <!--Acceptance form div begins here-->
       <div>
-        <table id="investors" border="1" cellspacing="0" cellpadding="0">
+        <table border="1" cellspacing="0" cellpadding="0">
           <tbody>
             <tr>
               <td valign="top">
                 <p><b>Number of ordinary shares accepted</b></p>
               </td>
               <td valign="top">
-                <p>[No of shares input]</p>
+                <p>{{ session.get("RIGHT_APPLIED") }} Units</p>
               </td>
             </tr>
 
@@ -218,7 +286,7 @@
                 <p><b>Additional ordinary shares applied for:</b></p>
               </td>
               <td valign="top">
-                <p>[Additional ordinary shares applied for]</p>
+                <p>{{ session.get("ADDITIONAL") }} Units</p>
               </td>
             </tr>
 
@@ -241,6 +309,25 @@
             </tr>
           </tbody>
         </table>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+
+        <div class="floatbtn center">
+          <a href="{{ url_for('convert2pdf') }}"
+            ><button class="primary-btn btn-large center" value="printout">
+              SAVE MY RIGHTS PAGE as PDF
+            </button></a
+          >
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
       </div>
       <!--end of acceptance form div-->
     </div>

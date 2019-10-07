@@ -1,4 +1,4 @@
-import app
+from flask import Flask, render_template, make_response
 import pdfkit
 
 def pdf_template():
@@ -7,6 +7,7 @@ def pdf_template():
 
     response = make_response(pdf)
     response.headers['Content-Type'] = 'application/pdf'
-    response.headers['Content-Disposition'] = 'inline; filename=output.pdf'
+    response.headers['Content-Disposition'] = 'inline; filename=right.pdf'
 
     return reponse
+ 

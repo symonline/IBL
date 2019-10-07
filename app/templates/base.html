@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!--Import Google Icon Font-->
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -10,26 +11,58 @@
     <!-- Compiled and minified CSS -->
     <link
       rel="stylesheet"
+      type="text/css"
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
 
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- Latest compiled and minified CSS 
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+      integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
+      crossorigin="anonymous"
+    />
+-->
+    <!--bootstrap CDN
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css"
+      integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ"
+      crossorigin="anonymous"
+    /> -->
 
     <!--Custom CSS-->
-    <link rel="stylesheet" href="../static/css/styles.css" />
+    <link type="text/css" rel="stylesheet" href="static/css/styles.css" />
 
-    {%if title %}
-    <title>{{ title }} IBL RIGHT ISSUE</title>
-    {%else%}
-    <title>{{ title }} WELCOME TO IBL RIGHT ISSUE</title>
-    {%endif%}
-
+    <title>IBL RIGHT ISSUE</title>
     <style>
-      #stylehome {
-        background-image: image("/app/static/img/ibl.png");
-        background-position: center;
+      .alignsearch {
+        padding: 50px;
+        margin: 50px;
+      }
+      .alertstyle {
+        text-decoration-color: red;
+        font-family: "Segoe UI", Roboto, Cantarell, "Open Sans",
+          "Helvetica Neue", sans-serif;
+        text-align: center;
+        vertical-align: middle;
+      }
+      body {
+        background-image: url("../static/ibl.png");
+        background-color: aquamarine;
         background-size: cover;
+        background-repeat: no-repeat;
+        height: 100%;
+      }
+      footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 50px;
+        background-color: black;
+        color: white;
+        text-align: center;
       }
     </style>
   </head>
@@ -38,36 +71,35 @@
     <!--Outer div start-->
     <div class="container">
       <!--Inner div end-->
-      <div class="">
+      <div class="container-fluid">
         <div class="flex-container">
           <a href="/">
             <img
-              id="Picture 57"
-              src="../static/img/nlogo_0.png"
+              src="{{url_for('static', filename='ibllogo.png')}}"
               alt="IBL"
-              class=""
+              class="brand-logo"
             />
           </a>
         </div>
-        <div id="stylehome">
-          <hr />
-        </div>
+
         <div class="alertstyle">
-          {% with messages =get_flashed_messages() %}
-        </div>
-        {% if messages %}
-        <ul>
-          {% for message in messages %}
-          <li>
-            <h6>{{ message }}</h6>
-          </li>
-          {% endfor %}
-        </ul>
-        {% endif %} {% endwith %}
-        <div class="flex-container">
-          <p>{% block home %} {% endblock %}</p>
-          <p>{% block search_form %} {% endblock %}</p>
-          <P>{% block result %} {% endblock %}</P>
+          <div class="alertstyle">
+            {% with messages = get_flashed_messages() %}
+          </div>
+          {% if messages %}
+          <ul>
+            {% for message in messages %}
+            <li>
+              <h6 class="alertstyle">{{ message }}</h6>
+            </li>
+            {% endfor %}
+          </ul>
+          {% endif %} {% endwith %}
+          <div class="alertstyle">
+            <p>{% block home %} {% endblock %}</p>
+            <p>{% block search_form %} {% endblock %}</p>
+            <P>{% block result %} {% endblock %}</P>
+          </div>
         </div>
       </div>
       <!--Inner div end-->
@@ -80,13 +112,26 @@
       integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
       crossorigin="anonymous"
     ></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
+
+    <!-- Include all compiled plugins (below), or include individual files as needed 
     <script
       src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
       integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
       crossorigin="anonymous"
     ></script>
+    -->
+    <footer class="center">
+      <h6>Courtesy of Apel Capital Registrars Limited</h6>
+    </footer>
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <!-- Compiled JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js"></script>
+    <script>
+      $(document).ready(function() {
+        $("select").formSelect();
+      });
+    </script>
   </body>
 </html>

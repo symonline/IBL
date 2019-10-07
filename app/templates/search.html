@@ -1,29 +1,42 @@
 {% extends "base.html" %} {% block search_form %}
 
-<div>
-  <h5>Search right</h5>
+<div class="alignsearch container-fluid card center hoverable">
+  <h2>Search right</h2>
   <!--from form.py  -->
 
   <form action="" method="POST">
-    {{ sform.hidden_tag() }}
-    <div class="alertstyle">
-      <p>
+    <p class="alertstyle" style="text-decoration-color:red;">
+      {{ sform.hidden_tag() }}
+    </p>
+    <div class="">
+      <div class="input-field">
         {{ sform.criteria.label }}<br />
         {{ sform.criteria }}<br />
         {% for error in sform.criteria.errors %}
-        <span style="text-decoration-color:red;">{{ error }}</span> {%endfor%}
-      </p>
+        <span>
+          {{ error }}
+        </span>
+        {%endfor%}
+      </div>
 
-      <p>
+      <div class="input-field">
         {{ sform.identifier.label }}<br />
         {{ sform.identifier }}<br />
         {% for error in sform.identifier.errors %}
-        <span style="text-decoration-color:red;">{{ error }}</span> {%endfor%}
-      </p>
+        <span>
+          {{ error }}
+        </span>
+        {%endfor%}
+      </div>
     </div>
-    <p>
-      {{ sform.search }}
-    </p>
+
+    <div class="center">
+      <input
+        type="submit"
+        class="btn-large btn-primary cemter"
+        placeholder="search"
+      />
+    </div>
   </form>
 </div>
 {%endblock%}

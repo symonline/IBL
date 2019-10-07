@@ -4,8 +4,11 @@ from config import Config
 from flask_migrate import Migrate
 import sqlite3
 import pdfkit
+from flask_bootstrap import Bootstrap
+
 
 app = Flask(__name__)
+Bootstrap(app)
 app.config.from_object(Config)
 db = SQLAlchemy(app)
 

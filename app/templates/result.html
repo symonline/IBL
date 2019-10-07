@@ -1,61 +1,78 @@
 {% extends "base.html" %} {% block result %}
 
-<div class="container" style="text-align: center;">
+
+<div class="alertstyle">
+  <h6>Successful</h6>
+</div>
+
+<div style="text-align: center;">
   <table
     class="responsive-table"
     style="text-align: left; background-color: rgb(238, 238, 238);"
-    cellpadding="5"
-    cellspacing="5"
-  >
+    cellpadding="2" cellspacing="2">
     <tbody>
       <tr>
-        <th style="vertical-align: top;">Serial Number<br /></th>
-        <th style="vertical-align: top;">Account Number<br /></th>
-        <th style="vertical-align: top;">Name<br /></th>
-        <th style="vertical-align: top;">Units Held<br /></th>
-        <th style="vertical-align: top;">Right Due<br /></th>
-        <th style="vertical-align: top;">Amount<br /></th>
-      </tr>
-      {% for holder in shareholders %}
-      <tr>
-        <div class="hide">
-          <td style="vertical-align: top;">{{ holder["sn"] }}</td>
-          <td style="vertical-align: top;">{{ holder["acno"] }}</td>
-          <td style="vertical-align: top;">{{ holder["name"] }}</td>
-          <td style="vertical-align: top;">{{ right["unit_held"] }}</td>
-          <td style="vertical-align: top;">{{ right["right_due"] }}</td>
-          <td style="vertical-align: top;">{{ right["amount"] }}</td>
-        </div>
-      </tr>
-      <tr>
-        <td colspan="3">
-          <input
-            name="Accepted Unit"
-            type="number"
-            value="accepted-unit"
-            placeholder="Accepted Units"
-          />
+        <td style="vertical-align: top;">Serial Number<br>
         </td>
-        <td colspan="3">
-          <input
-            name="Additional Unit"
-            type="number"
-            value="additional-unit"
-            placeholder="Additional Units"
-          />
+        <td style="vertical-align: top;">Account Number<br>
         </td>
+        <td style="vertical-align: top;">Name<br>
+        </td>
+        <td style="vertical-align: top;">Units Held<br>
+        </td>
+        <td style="vertical-align: top;">Right Due<br>
+        </td>
+        <td style="vertical-align: top;">Amount<br>
       </tr>
+
       <tr>
-        <td></td>
-        <td colspan="4">
-          <input name="print" value="print" type="submit" />
+        <td style="vertical-align: top;">{{session.get('SN')}} <br>
         </td>
-        <td></td>
+        <td style="vertical-align: top;">{{session.get('ACNO')}}<br>
+        </td>
+        <td style="vertical-align: topnam;">{{session.get('NAME')}}<br>
+        </td>
+        <td style="vertical-align: top;">{{session.get('UNIT_HELD')}}<br>
+        </td>
+        <td style="vertical-align: top;">{{session.get('RIGHT_DUE')}}<br>
+        </td>
+        <td style="vertical-align: top;">{{session.get('AMOUNT')}}<br>
       </tr>
-      {% endfor %}
+      <div>
+      </div>
     </tbody>
   </table>
-  <br />
+  <br>
+  <p><br>
+    <table
+      style="text-align: left; background-color: rgb(238, 238, 238);"
+      cellpadding="2" cellspacing="2">
+      <tbody>
+        <tr>
+          </td>
+          <td style="vertical-align: top;">Number of ordinary<br>shares accepted<br>
+          </td>
+          <td style="vertical-align: top;">Additional ordinary<br>shares applied for:<br>
+          </td>
+        </tr>
+        <tr>
+          <form method="post" action="{{url_for('acceptance')}}">
+            </td>
+            <td style="vertical-align: top;"><input value="{{session.get('RIGHT_APPLIED')}}" name="applied"><br>
+            </td>
+            <td style="vertical-align: top;"><input value="{{session.get('ADDITIONAL')}}" name="additional"><br>
+            </td>
+            <td> <input class="primary-btn btn-large center" name="submit" value="submit" type="submit">
+            </td>
+          </form>
+        </tr>
+      </tbody>
+    </table>
+  </p>
 </div>
-<div></div>
+
+<br>
+<br>
+<br>
+
 {%endblock%}

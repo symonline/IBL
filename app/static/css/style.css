@@ -1,10 +1,26 @@
+.stylehome {
+  background-image: url("..//ibl.png");
+  background-position: center;
+  background-size: cover;
+}
+
+body {
+  background-image: url("..//ibl.png");
+  background-color: #cccccc;
+}
+
 .top {
   background: #029640;
   color: #f2f2f2;
 }
-
+.card {
+  padding: 10px;
+  margin: 10px;
+}
 .alertstyle {
   text-decoration-color: red;
+  text-decoration-style: wavy;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   font-style: italic;
 }
 .flex-container {
@@ -31,6 +47,7 @@
 
 #stylehome {
   background-image: url(../img/ibl.png);
+  background-position: center;
 }
 .jumbotron {
   line-height: 15px;
@@ -42,32 +59,6 @@
   line-height: 15px;
   padding: 5px;
   margin: 0px;
-}
-
-input[type="text"],
-select {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
-input[type="submit"] {
-  width: 100%;
-  background-color: #4caf50;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-input[type="submit"]:hover {
-  background-color: #45a049;
 }
 
 #investors {

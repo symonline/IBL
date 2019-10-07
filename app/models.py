@@ -39,7 +39,7 @@ class ShareHolder(db.Model):
         if sname:
             #return cls.query.filter_by(name = sname).all()
             
-            return cls.query.filter(cls.name.like( sname )).all()
+            return cls.query.filter(cls.name.like( sname )).first()
 
     @classmethod
     # To Help with the search for shareholder specifically by their
@@ -49,6 +49,19 @@ class ShareHolder(db.Model):
     def get_shareholder_by_acno(cls, ac_no): # whwre reg_no is an existing shareholder registrars account no
         if ac_no:
             return cls.query.filter_by(acno = ac_no).first()
+            # return cls.query.filter(cls.name.like("%" + value + "%")).all()
+    
+    @classmethod
+    def get_shareholder_by_value(cls, choice, value): # whwre reg_no is an existing shareholder registrars account no
+        if value :
+            if choice=='name':
+                return cls.query.filter_by(name = value).first()
+            elif choice=='acno':
+                return cls.query.filter_by(acno = value).first()
+            elif choice=='sn':
+                return cls.query.filter_by(sn = value).first()
+            else:
+                return False
             # return cls.query.filter(cls.name.like("%" + value + "%")).all()
 
     @classmethod
@@ -151,7 +164,7 @@ class Right(db.Model):
     holder= db.Column(db.Integer, db.ForeignKey('share_holder.id'))
     amount = db.Column(db.Float(), nullable=True)
     company = db.Column(db.String(140), nullable=True)
-    right_date=db.Column(db.String(64))
+    right_date=db.Column(db.String(14))
     right_applied=db.Column(db.Integer, nullable=True)
     additional_right_applied= db.Column(db.Integer, nullable=True)
     additional_apply = db.Column(db.Integer, nullable=True)
@@ -172,7 +185,7 @@ class Right(db.Model):
     @classmethod
     def get_all_right(cls, value):
         return cls.query.filter_by(acno = value).all()
-        
+ 
     def update_additional_right(self,value): # parse in argument from your form via view-function
         if value:
             self.additional_apply = value
@@ -258,9 +271,3 @@ class SearchOption(db.Model):
     def __repr__(self):
         return f'<Search_Option Code: {self.code}, Search_Option Display Name: {self.name}>'
 
-
-
-
-
-
-    
