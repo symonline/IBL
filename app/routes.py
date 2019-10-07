@@ -18,7 +18,6 @@ def index():
             if account.value == '':
                 return render_template('index.htm', message='Please enter required field')
         #if db.session.query(Rights).filter(Rights.id==account).count()==0:
-
         return render_template('success.html', account = account)
     '''
 @app.route('/search', methods=['GET', 'POST'])
@@ -85,7 +84,16 @@ def acceptance():
 
         consent = session.get('RIGHT_APPLIED')
         added = session.get('ADDITIONAL')
+
+        if not (added) :
+            session['ADDITIONAL']=0
+            added = 0
+            # flash ("Additional field can not be empty ")
+            session['SUBMITTED']=False
+            #return render_template ('result.html')
+
         if not (consent) :
+            session['RIGHT_APPLIED']=session.get('RIGHT_DUE')
             flash ("Consent field can not be empty ")
             session['SUBMITTED']=False
             return render_template ('result.html')
@@ -118,6 +126,10 @@ def acceptance():
             flash ("Additional Unit is not Allowed while Entitled Right Has Not Been Fully Accepted!")
             session['SUBMITTED']=False
             return render_template ('result.html')   
+        else:
+            session['SUBMITTED']=True
+        
+       
 
         account = int(session.get('ACNO'))
         rights=Right.get_right_by_acno(account)

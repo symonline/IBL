@@ -1,0 +1,29 @@
+{%extends "result.html" %} {% block consent %}
+<table style="border-style: solid; border-color: black; text-align: left; width: 766px; height: 60px; background-color: rgb(238, 238, 238);" cellpadding="2" cellspacing="2">
+    <tbody>
+        <tr>
+            </td>
+            <td style="vertical-align: top;">Number of ordinary<br>shares accepted<br>
+            </td>
+            <td style="vertical-align: top;">Additional ordinary<br>shares applied for:<br>
+            </td>
+        </tr>
+        <tr>
+            <form method="post" action="">
+                {{cform.hidden_tag()}}
+                <p>
+                    {{cform.accepted_unit.label }}<br> {{cform.accepted_unit }}<br> {% for error in cform.accepted_unit.errors %}
+                    <span style="color:red;">{{error}}</span> {%endfor%}
+                </p>
+                <p>
+                    {{cform.additional_unit.label }}<br> {{cform.additional_unit}}<br> {% for error in cform.additional_unit.errors %}
+                    <span style="color:red;">{{error}}</span> {%endfor%}
+                </p>
+                <p>
+                    {{cform.search}}
+                </p>
+            </form>
+        </tr>
+    </tbody>
+</table>
+{%endblock%}

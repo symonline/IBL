@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import SelectField, StringField,SubmitField
+from wtforms import SelectField, StringField,SubmitField,IntegerField
 from wtforms.validators import DataRequired
 
 
@@ -10,7 +10,7 @@ class SearchForm_logic(FlaskForm):
      
 
 class ConsentForm_logic(FlaskForm):
-    accepted_unit = StringField('Shares Accepted', validators=[])
-    additional_unit = StringField('Additional Unit', validators=[])
+    accepted_unit = IntegerField('Shares Accepted', default='',validators=[DataRequired()])
+    additional_unit = IntegerField('Additional Unit', validators=[])
     submit = SubmitField('submit')
     

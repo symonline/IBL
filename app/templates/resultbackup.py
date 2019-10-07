@@ -1,6 +1,8 @@
 {% extends "base.html" %} {% block result %}
 <div class="">
     <img src="../static/img/logo.png" alt="" class="" />
+    <h1>Succesful</h1>
+    <h2>Thank you!</h2>
 </div>
 
 <div style="text-align: center;">
@@ -41,9 +43,6 @@
     <p><br>
         <table style="border-style: solid; border-color: black; text-align: left; width: 766px; height: 60px; background-color: rgb(238, 238, 238);" cellpadding="2" cellspacing="2">
             <tbody>
-                <p>
-                    <h1>Consent Form</h1>
-                </p>
                 <tr>
                     </td>
                     <td style="vertical-align: top;">Number of ordinary<br>shares accepted<br>
