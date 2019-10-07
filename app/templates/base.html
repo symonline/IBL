@@ -32,7 +32,7 @@
     /> -->
 
     <!--Custom CSS-->
-    <link type="text/css" rel="stylesheet" href="static/css/styles.css" />
+    <link type="text/css" rel="stylesheet" href="static/css/style.css" />
 
     <title>IBL RIGHT ISSUE</title>
     <style>
@@ -41,11 +41,19 @@
         margin: 50px;
       }
       .alertstyle {
+        text-decoration-style: wavy;
+        font-family: "Segoe UI", Roboto, Cantarell, "Open Sans",
+          "Helvetica Neue", sans-serif;
+        text-align: center;
+        vertical-align: middle;
+      }
+      .alert {
         text-decoration-color: red;
         font-family: "Segoe UI", Roboto, Cantarell, "Open Sans",
           "Helvetica Neue", sans-serif;
         text-align: center;
         vertical-align: middle;
+        color: white;
       }
       body {
         background-image: url("../static/ibl.png");
@@ -63,6 +71,10 @@
         background-color: black;
         color: white;
         text-align: center;
+      }
+      a {
+        text-decoration: none;
+        color: cyan;
       }
     </style>
   </head>
@@ -82,15 +94,15 @@
           </a>
         </div>
 
-        <div class="alertstyle">
-          <div class="alertstyle">
+        <div>
+          <div class="alert">
             {% with messages = get_flashed_messages() %}
           </div>
           {% if messages %}
           <ul>
             {% for message in messages %}
             <li>
-              <h6 class="alertstyle">{{ message }}</h6>
+              <h6 class="alert">{{ message }}</h6>
             </li>
             {% endfor %}
           </ul>
@@ -121,7 +133,12 @@
     ></script>
     -->
     <footer class="center">
-      <h6>Courtesy of Apel Capital Registrars Limited</h6>
+      <h6>
+        Courtesy of
+        <a href="https://registrars.apel.com.ng"
+          >Apel Capital Registrars Limited</a
+        >
+      </h6>
     </footer>
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

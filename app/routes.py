@@ -87,7 +87,16 @@ def acceptance():
 
         consent = session.get('RIGHT_APPLIED')
         added = session.get('ADDITIONAL')
+
+        if not (added) :
+            session['ADDITIONAL']=0
+            added = 0
+            # flash ("Additional field can not be empty ")
+            session['SUBMITTED']=False
+            #return render_template ('result.html')
+
         if not (consent) :
+            session['RIGHT_APPLIED']=session.get('RIGHT_DUE')
             flash ("Consent field can not be empty ")
             session['SUBMITTED']=False
             return render_template ('result.html')
@@ -120,6 +129,10 @@ def acceptance():
             flash ("Additional Unit is not Allowed while Entitled Right Has Not Been Fully Accepted!")
             session['SUBMITTED']=False
             return render_template ('result.html')   
+        else:
+            session['SUBMITTED']=True
+        
+       
 
         account = int(session.get('ACNO'))
         rights=Right.get_right_by_acno(account)
@@ -144,6 +157,8 @@ def acceptance():
 def convert2pdf():
     html = render_template('ibl_report.html',download_filename='right.pdf')
     return render_pdf(HTML(string=html))
+
+    session.clear()
     # convert to pdf and clear session
     # rendered = render_template('/ibl_report.html')
     # wkhtmltopdf = Wkhtmltopdf(render_template_to_pdf)
