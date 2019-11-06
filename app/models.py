@@ -63,6 +63,20 @@ class ShareHolder(db.Model):
             else:
                 return False
             # return cls.query.filter(cls.name.like("%" + value + "%")).all()
+    
+    @classmethod
+    def get_shareholder_by_name_(cls, value): # whwre reg_no is an existing shareholder registrars account no
+        if value :
+            first_name = cls.query.filter(cls.first.like("%" + value + "%")).all()
+            if first_name :
+                return first_name
+            second_name = cls.query.filter(cls.second.like("%" + value + "%")).all()
+            if second_name:
+                return second_name
+            other_name = cls.query.filter(cls.other.like("%" + value + "%")).all()
+            if  other_name:
+                return  other_name
+            # return cls.query.filter(cls.name.like("%" + value + "%")).all()
 
     @classmethod
     def right_info(cls, reg_acc_no):# this should return a list of right owned by this account
@@ -164,13 +178,13 @@ class Right(db.Model):
     holder= db.Column(db.Integer, db.ForeignKey('share_holder.id'))
     amount = db.Column(db.Float(), nullable=True)
     company = db.Column(db.String(140), nullable=True)
-    right_date=db.Column(db.String(14))
-    right_applied=db.Column(db.Integer, nullable=True)
-    additional_right_applied= db.Column(db.Integer, nullable=True)
+    right_date = db.Column(db.String(14))
+    right_applied = db.Column(db.Integer, nullable=True)
+    additional_right_applied = db.Column(db.Integer, nullable=True)
     additional_apply = db.Column(db.Integer, nullable=True)
     additional_price = db.Column(db.Integer, nullable=True)
     balance = db.Column(db.Integer, nullable=True)
-    timestamp =db.Column(db.DateTime, default = datetime.utcnow(), index=True)
+    timestamp = db.Column(db.DateTime, default = datetime.utcnow(), index=True)
     
     def __init__(self, **kwargs):
         self.__dict__.update(kwargs)
@@ -259,13 +273,13 @@ class SearchOption(db.Model):
         self.__dict__.update(kwargs)
 
     @classmethod
-    def add_new(self):
+    def add_new(cls):
         pass
 
-    def remove_existing(self):
+    def remove_existing(cls):
         pass
     
-    def update_existing(self):
+    def update_existing(cls):
         pass 
 
     def __repr__(self):
