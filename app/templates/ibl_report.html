@@ -49,7 +49,7 @@
                 <div class="flex-left">
                     <div>Issuing House</div><img src="..//apel.png" width="50px" /></div>
                 <div class="flex-right">
-                    A/C Number: {{session.get('ACNO')}}<br> Unit Held: {{session.get('UNIT_HELD')}} Units<br> Right Due:{{session.get('RIGHT_DUE')}} Units<br> Amount Payable: {{session.get('AMOUNT')}} Naira<br>
+                    A/C Number: {{session.get('ACNO')}}<br> Holdings: {{session.get('HOLDINGS')}} Units<br> Right Due:{{session.get('RIGHT_DUE')}} Units<br> Unit Price: {{session.get('PRICE')}} Naira<br>
                 </div>
             </div>
             <hr>
@@ -102,7 +102,7 @@
                             <p><b>Narration:</b></p>
                         </td>
                         <td valign="top">
-                            <p><i>{{session.get('NAME')}}s payment for INTERNATIONAL BREWERIES PLC</i> RIGHTS</p>
+                            <p><i>{{session.get('NAMES')}}s payment for INTERNATIONAL BREWERIES PLC</i> RIGHTS</p>
                         </td>
                     </tr>
 

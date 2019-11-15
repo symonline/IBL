@@ -260,7 +260,6 @@ class Right(db.Model):
     def __repr__(self):
         return f'<Share Holder Name: {self.name}>'
 
-
 class SearchOption(db.Model):
 
     __tablename__='search_option'
@@ -287,7 +286,82 @@ class SearchOption(db.Model):
 
 
 
+class HoldersRight(db.Model):
 
+    item = ''
+    signal = ''
+    __deleted_right__ = []
+    __updated_right__ = []
+    __created_right__ = []
 
+    __tablename__='holders_right'
 
+    id = db.Column(db.Integer, primary_key=True, index=True, unique=True)
+    names = db.Column(db.String(100), nullable = True)
+    acno = db.Column(db.Integer, index=True)
+    fname = db.Column(db.String(50), nullable = True,index=True)
+    oname = db.Column(db.String(50), nullable = True,index=True)
+    lname = db.Column(db.String(50), nullable = True,index=True)
+    address = db.Column(db.String(300), nullable=True)
+    holdings = db.Column(db.Integer, nullable=True)
+    right_due = db.Column(db.Integer, nullable=True)
+    unit_price = db.Column(db.Float(), nullable=True)
+    company = db.Column(db.String(140), nullable=True)
+    bvn = db.Column(db.Integer, index=True, nullable=True)
+    chn = db.Column(db.Integer, index=True, nullable=True)
+    phone = db.Column(db.Integer, nullable=True)
+    email = db.Column(db.String(64), nullable=True)
+    cscs_account_no = db.Column(db.Integer, index=True, nullable=True)
+    amount = db.Column(db.Float(), nullable=True)
     
+    right_date = db.Column(db.String(14))
+    right_applied = db.Column(db.Integer, nullable=True)
+    additional_right_applied = db.Column(db.Integer, nullable=True)
+    additional_apply = db.Column(db.Integer, nullable=True)
+    additional_price = db.Column(db.Integer, nullable=True)
+    balance = db.Column(db.Integer, nullable=True)
+    timestamp = db.Column(db.DateTime, default = datetime.utcnow(), index=True)
+    
+    def __init__(self, **kwargs):
+        self.__dict__.update(kwargs)
+
+    @classmethod
+    def get_holder_by_value(cls, choice, value, pages): # where reg_no is an existing shareholder registrars account no
+        if choice =='name' :
+            # return cls.query.filter(cls.fname.like("%" + value + "%")).all()
+            fn = cls.query.filter(cls.fname.like("%" + value + "%")).paginate(page=pages, per_page=10)
+            if fn:
+                return fn
+            on = cls.query.filter(cls.oname.like("%" + value + "%")).paginate(page=pages, per_page=10)
+            if on:
+                return on
+            ln = cls.query.filter(cls.lname.like("%" + value + "%")).paginate(page=pages, per_page=10)
+            if ln:
+                return ln
+            # return cls.query.filter(cls.name.like("%" + value + "%")).all()
+    
+    @classmethod
+    def get_holder_by_holder(cls, value, pages): # where reg_no is an existing shareholder registrars account no
+        # return cls.query.filter(cls.fname.like("%" + value + "%")).all()
+        fn = cls.query.filter(cls.fname.like("%" + value + "%")).paginate(page=pages, per_page=10)
+        if fn:
+            return fn
+        on = cls.query.filter(cls.oname.like("%" + value + "%")).paginate(page=pages, per_page=10)
+        if on:
+            return on
+        ln = cls.query.filter(cls.lname.like("%" + value + "%")).paginate(page=pages, per_page=10)
+        if ln:
+            return ln
+            # return cls.query.filter(cls.name.like("%" + value + "%")).all()
+    
+    @classmethod
+    def get_shareholder_by_acno(cls, acc): # whwre reg_no is an existing shareholder registrars account no
+        if acc:
+            #return cls.query.filter_by(name = sname).all()
+            return cls.query.filter_by(acno = acc).first()
+
+
+
+
+
+     

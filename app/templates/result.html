@@ -4,63 +4,62 @@
 </div>
 
 <div style="text-align: center;">
-    <table style="border-style: solid; border-color: black; text-align: left; width: 766px; height: 60px; background-color: rgb(238, 238, 238);" cellpadding="2" cellspacing="2">
+    <table class="" style="border-style: solid; border-color: black; text-align: left; width: 766px; height: 60px; background-color: rgb(238, 238, 238);" cellpadding="2" cellspacing="2">
         <tbody>
-            <tr>
-                <td style="vertical-align: top;">Serial Number<br>
-                </td>
-                <td style="vertical-align: top;">Account Number<br>
-                </td>
-                <td style="vertical-align: top;">Name<br>
-                </td>
-                <td style="vertical-align: top;">Units Held<br>
-                </td>
-                <td style="vertical-align: top;">Right Due<br>
-                </td>
-                <td style="vertical-align: top;">Amount<br>
-            </tr>
-
-            <tr>
-                <td style="vertical-align: top;">{{session.get('SN')}} <br>
-                </td>
-                <td style="vertical-align: top;">{{session.get('ACNO')}}<br>
-                </td>
-                <td style="vertical-align: topnam;">{{session.get('NAME')}}<br>
-                </td>
-                <td style="vertical-align: top;">{{session.get('UNIT_HELD')}}<br>
-                </td>
-                <td style="vertical-align: top;">{{session.get('RIGHT_DUE')}}<br>
-                </td>
-                <td style="vertical-align: top;">{{session.get('AMOUNT')}}<br>
-            </tr>
-            <div>
-            </div>
+            <form method="post" action="{{url_for('acceptance')}}">
+                <tr>
+                    <td style="vertical-align: top;">Select<br>
+                    </td>
+                    <td style="vertical-align: top;">Account Number<br>
+                    </td>
+                    <td style="vertical-align: top;">Name<br>
+                    </td>
+                    <td style="vertical-align: top;">Holdings<br>
+                    </td>
+                    <td style="vertical-align: top;">Right Due<br>
+                    </td>
+                    <td style="vertical-align: top;">Unit Held<br>
+                    </td>
+                    <td style="vertical-align: top;">Unit Price<br>
+                    </td>
+                    <td style="vertical-align: top;">Amount<br>
+                    </td>
+                </tr>
+                {% for holder in shareholders.items %}
+                <tr>
+                    <td style="vertical-align: top;">
+                        <input type="radio" name="option" value="{{ holder.acno }}"></option><br>
+                    </td>
+                    <td style="vertical-align: top;">{{holder.acno}}<br>
+                    </td>
+                    <td style="vertical-align: topnam;">{{holder.names}}<br>
+                    </td>
+                    <td style="vertical-align: top;">{{holder.holdings}} <br>
+                    </td>
+                    <td style="vertical-align: top;">{{holder.right_due}}<br>
+                    </td>
+                    <td style="vertical-align: top;">{{holder.unit_held}}<br>
+                    </td>
+                    <td style="vertical-align: top;">{{holder.unit_price}}<br>
+                    </td>
+                    <td style="vertical-align: top;">{{holder.amount}}<br>
+                    </td>
+                </tr>
+                {% endfor %}
+                <div>
+                    <br>{% for page_num in shareholders.iter_pages() %} {% if page_num %}
+                    <a class="" href="{{url_for('search', page = page_num)}}">{{ page_num }}</a> {%else %} {%endif%} {%endfor%}
+                    <br>
+                </div>
         </tbody>
     </table>
     <br>
     <p><br>
-        <table style="border-style: solid; border-color: black; text-align: left; width: 766px; height: 60px; background-color: rgb(238, 238, 238);" cellpadding="2" cellspacing="2">
+        <table>
             <tbody>
-                <p>
-                    <h1>Consent Form</h1>
-                </p>
-                <tr>
-                    </td>
-                    <td style="vertical-align: top;">Number of ordinary<br>shares accepted<br>
-                    </td>
-                    <td style="vertical-align: top;">Additional ordinary<br>shares applied for:<br>
-                    </td>
-                </tr>
-                <tr>
-                    <form method="post" action="{{url_for('acceptance')}}">
-                        </td>
-                        <td style="vertical-align: top;"><input value="{{session.get('RIGHT_APPLIED')}}" name="applied"><br>
-                        </td>
-                        <td style="vertical-align: top;"><input value="{{session.get('ADDITIONAL')}}" name="additional"><br>
-                        </td>
-                        <td> <input name="submit" value="submit" type="submit">
-                        </td>
-                    </form>
+
+                <input name="submit" value="submit" type="submit">
+                </form>
                 </tr>
             </tbody>
         </table>
