@@ -1,0 +1,58 @@
+{% extends "base.html" %} {% block result %}
+<div class="">
+    <img src="../static/img/logo.png" alt="" class="" />
+</div>
+
+<div style="text-align: center;">
+    <table class="" style="border-style: solid; border-color: black; text-align: left; width: 766px; height: 60px; background-color: rgb(238, 238, 238);" cellpadding="2" cellspacing="2">
+        <tbody>
+            <tr>
+                <td style="vertical-align: top;">Select<br>
+                </td>
+                <td style="vertical-align: top;">Account Number<br>
+                </td>
+                <td style="vertical-align: top;">Name<br>
+                </td>
+                <td style="vertical-align: top;">Holdings<br>
+                </td>
+                <td style="vertical-align: top;">Right Due<br>
+                </td>
+                <td style="vertical-align: top;">Unit Held<br>
+                </td>
+                <td style="vertical-align: top;">Unit Price<br>
+                </td>
+                <td style="vertical-align: top;">Amount<br>
+                </td>
+            </tr>
+            {% for holder in rights.items %}
+            <tr>
+                <td style="vertical-align: top;">
+                    <input type="radio" name="option" value="{{ holder.acno }}"></option><br>
+                </td>
+                <td style="vertical-align: top;">{{holder.acno}}<br>
+                </td>
+                <td style="vertical-align: topnam;">{{holder.names}}<br>
+                </td>
+                <td style="vertical-align: top;">{{holder.holdings}} <br>
+                </td>
+                <td style="vertical-align: top;">{{holder.right_due}}<br>
+                </td>
+                <td style="vertical-align: top;">{{holder.unit_held}}<br>
+                </td>
+                <td style="vertical-align: top;">{{holder.unit_price}}<br>
+                </td>
+                <td style="vertical-align: top;">{{holder.amount}}<br>
+                </td>
+            </tr>
+            {% endfor %}
+            <div>
+                <br>{% for page_num in rights.iter_pages() %} {% if page_num %}
+                <a class="" href="{{url_for('holder_right', page = page_num)}}">{{ page_num }}</a> {%else %} {%endif%} {%endfor%}
+                <br>
+            </div>
+        </tbody>
+    </table>
+    <br>
+</div>
+
+{% endblock %}
