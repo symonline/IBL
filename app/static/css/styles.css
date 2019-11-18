@@ -1,6 +1,66 @@
+body {
+    padding: 20px;
+}
+
+input[type="radio"] {
+    padding: 0;
+    display: block;
+    position: relative;
+    color: #45a049;
+}
+
+.with-gap {
+    display: block;
+    position: absolute;
+}
+
+.logo {
+    display: flex-box;
+    position: relative;
+}
+
+.btn {
+    position: fixed;
+    top: 40px;
+    left: 150px;
+    width: 200px;
+    height: 80px;
+    display: inline;
+    justify-content: center;
+    background-color: black;
+}
+
+.form {
+    padding: 0;
+    margin: 0;
+}
+
+div.content {
+    position: relative;
+    display: block;
+    padding-bottom: 50px;
+    margin-bottom: 50px;
+    width: 70%;
+}
+
+.curier {
+    font-family: curier;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+h1 span {
+    text-transform: uppercase;
+}
+
 .top {
-    background: #cc8400;
+    background: #176f52;
     color: #f2f2f2;
+    width: 100%;
+    bottom: 0px;
+    padding-bottom: 0;
 }
 
 .flex-container {
@@ -12,7 +72,7 @@
 .flex-right {
     text-align: right;
     justify-content: right;
-    line-height: 75px;
+    line-height: 20px;
 }
 
 .flex-left {
@@ -89,4 +149,16 @@ input[type=submit]:hover {
     text-align: left;
     background-color: #4CAF50;
     color: white;
+}
+
+@media print {
+    #content::before,
+    button#print,
+    .printing,
+    #print {
+        display: none;
+        padding: 0;
+        margin: 0;
+        bottom: 0;
+    }
 }

@@ -28,7 +28,7 @@ def search():
     # check whether the form validation passes all conditions 
     if sform.validate_on_submit():
         # load the the account number/ name /etc from the form class (form.py)
-        sholder_name = sform.identifier.data
+        sholder_name = sform.identifier.data.upper()
         schoice = sform.criteria.data
         page = request.args.get('page', 1, type=int)
         # load the Shareholder model db method/function by passing form(name/acc_no/etc) agument

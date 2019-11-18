@@ -3,53 +3,51 @@
     <img src="../static/img/logo.png" alt="" class="" />
 </div>
 
-<div style="text-align: center;">
-    <table class="" style="border-style: solid; border-color: black; text-align: left; width: 766px; height: 60px; background-color: rgb(238, 238, 238);" cellpadding="2" cellspacing="2">
+<div>
+    <table class="responsive-table">
         <tbody>
             <form method="post" action="{{url_for('acceptance')}}">
                 <tr>
-                    <td style="vertical-align: top;">Select<br>
+                    <td>Select<br>
                     </td>
-                    <td style="vertical-align: top;">Account Number<br>
+                    <td>Account Number<br>
                     </td>
-                    <td style="vertical-align: top;">Name<br>
+                    <td>Name<br>
                     </td>
-                    <td style="vertical-align: top;">Holdings<br>
+                    <td>Holdings<br>
                     </td>
-                    <td style="vertical-align: top;">Right Due<br>
+                    <td>Right Due<br>
                     </td>
-                    <td style="vertical-align: top;">Unit Held<br>
+                    <td>Unit Held<br>
                     </td>
-                    <td style="vertical-align: top;">Unit Price<br>
+                    <td>Unit Price<br>
                     </td>
-                    <td style="vertical-align: top;">Amount<br>
+                    <td>Amount<br>
                     </td>
                 </tr>
-                {% for holder in shareholders.items %}
+                {% for holder in shareholders%}
                 <tr>
-                    <td style="vertical-align: top;">
-                        <input type="radio" name="option" value="{{ holder.acno }}"></option><br>
+                    <td>
+                        <input class="" type="radio" name="option" value="{{holder.acno}}"><br>
                     </td>
-                    <td style="vertical-align: top;">{{holder.acno}}<br>
+                    <td>{{holder.acno}}<br>
                     </td>
-                    <td style="vertical-align: topnam;">{{holder.names}}<br>
+                    <td>{{holder.names}}<br>
                     </td>
-                    <td style="vertical-align: top;">{{holder.holdings}} <br>
+                    <td>{{holder.holdings}} <br>
                     </td>
-                    <td style="vertical-align: top;">{{holder.right_due}}<br>
+                    <td>{{holder.right_due}}<br>
                     </td>
-                    <td style="vertical-align: top;">{{holder.unit_held}}<br>
+                    <td>{{holder.unit_held}}<br>
                     </td>
-                    <td style="vertical-align: top;">{{holder.unit_price}}<br>
+                    <td>{{holder.unit_price}}<br>
                     </td>
-                    <td style="vertical-align: top;">{{holder.amount}}<br>
+                    <td>{{holder.amount}}<br>
                     </td>
                 </tr>
                 {% endfor %}
                 <div>
-                    <br>{% for page_num in shareholders.iter_pages() %} {% if page_num %}
-                    <a class="" href="{{url_for('search', page = page_num)}}">{{ page_num }}</a> {%else %} {%endif%} {%endfor%}
-                    <br>
+
                 </div>
         </tbody>
     </table>

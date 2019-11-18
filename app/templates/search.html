@@ -10,7 +10,7 @@
             <span style="color:red;">{{error}}</span> {%endfor%}
         </p>
         <p>
-            {{sform.identifier.label }}<br> {{sform.identifier}}<br> {% for error in sform.identifier.errors %}
+            {{sform.identifier.label}}<br> {{sform.identifier}}<br> <i>{{sform.identifier.description[0] }}</i><br> {% for error in sform.identifier.errors %}
             <span style="color:red;">{{error}}</span> {%endfor%}
         </p>
         <p>

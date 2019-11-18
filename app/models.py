@@ -1,5 +1,6 @@
 from app import db
 from datetime import datetime
+import itertools
 # import pdb
 
 class ShareHolder(db.Model):
@@ -325,8 +326,10 @@ class HoldersRight(db.Model):
     def __init__(self, **kwargs):
         self.__dict__.update(kwargs)
 
+
     @classmethod
     def get_holder_by_value(cls, choice, value, pages): # where reg_no is an existing shareholder registrars account no
+        '''
         if choice =='name' :
             # return cls.query.filter(cls.fname.like("%" + value + "%")).all()
             fn = cls.query.filter(cls.fname.like("%" + value + "%")).paginate(page=pages, per_page=10)
@@ -339,6 +342,27 @@ class HoldersRight(db.Model):
             if ln:
                 return ln
             # return cls.query.filter(cls.name.like("%" + value + "%")).all()
+            '''
+        all_acno=[]
+        if choice =='name' :
+            val = value.split()
+            # return cls.query.filter(cls.fname.like("%" + value + "%")).all()
+            for name in val: 
+                fn = cls.query.filter_by(fname = name).all()# paginate(page=pages, per_page=10)
+                on = cls.query.filter_by(oname = name).all()# paginate(page=pages, per_page=10)
+                ln = cls.query.filter_by(lname = name).all()# paginate(page=pages, per_page=10)
+            all_names = list(itertools.chain(fn, on, ln))
+            return all_names
+
+        #if isinstance((int(value)),int) and len(value)>2:
+        all_acno.append(cls.query.filter_by(acno = value).first())
+        return all_acno
+    
+    @classmethod
+    def get_shareholder_by_acno(cls, account_number): # where reg_no is an existing shareholder registrars account no
+        if account_number:
+            #return cls.query.filter_by(name = sname).all()
+            return cls.query.filter_by(acno = account_number).first()
     
     @classmethod
     def get_holder_by_holder(cls, value, pages): # where reg_no is an existing shareholder registrars account no
@@ -354,11 +378,7 @@ class HoldersRight(db.Model):
             return ln
             # return cls.query.filter(cls.name.like("%" + value + "%")).all()
     
-    @classmethod
-    def get_shareholder_by_acno(cls, acc): # whwre reg_no is an existing shareholder registrars account no
-        if acc:
-            #return cls.query.filter_by(name = sname).all()
-            return cls.query.filter_by(acno = acc).first()
+
 
 
 
