@@ -1,21 +1,22 @@
 {% extends "base.html" %} {% block search_form %}
-<div>
-    <h1> SEARCH RIGHT</h1>
+<div class="center z-depth-2">
+    <h4 class="flex-container justify-content-center"> SEARCH RIGHT</h4>
     <!--from form.py  -->
 
     <form action="" method="POST">
         {{sform.hidden_tag()}}
-        <p>
+        <div class="alert alert-warning" role="alert">
             {{sform.criteria.label }}<br> {{sform.criteria}}<br> {% for error in sform.criteria.errors %}
-            <span style="color:red;">{{error}}</span> {%endfor%}
-        </p>
-        <p>
-            {{sform.identifier.label}}<br> {{sform.identifier}}<br> <i>{{sform.identifier.description[0] }}</i><br> {% for error in sform.identifier.errors %}
-            <span style="color:red;">{{error}}</span> {%endfor%}
-        </p>
-        <p>
+            <span class="alert alert-warning" role="alert">{{error}}</span> {%endfor%}
+        </div>
+        <div class="alert alert-warning" role="alert">
+            {{sform.identifier.label}}<br> {{sform.identifier}}<br> <i>{{sform.identifier.description[0] }}</i><br>
+            {% for error in sform.identifier.errors %}
+            <span class="alert alert-warning" role="alert">{{error}}</span> {%endfor%}
+        </div>
+        <div>
             {{sform.search}}
-        </p>
+        </div>
 
     </form>
 </div>

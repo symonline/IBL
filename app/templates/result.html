@@ -1,29 +1,27 @@
 {% extends "base.html" %} {% block result %}
-<div class="">
-    <img src="../static/img/logo.png" alt="" class="" />
-</div>
 
 <div>
-    <table class="responsive-table">
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Further search..." title="Type in a name">
+    <table id="table_id" class="display">
         <tbody>
             <form method="post" action="{{url_for('acceptance')}}">
                 <tr>
-                    <td>Select<br>
-                    </td>
-                    <td>Account Number<br>
-                    </td>
-                    <td>Name<br>
-                    </td>
-                    <td>Holdings<br>
-                    </td>
-                    <td>Right Due<br>
-                    </td>
-                    <td>Unit Held<br>
-                    </td>
-                    <td>Unit Price<br>
-                    </td>
-                    <td>Amount<br>
-                    </td>
+                    <th>Select
+                    </th>
+                    <th>Account Number
+                    </th>
+                    <th>Name
+                    </th>
+                    <th>Holdings
+                    </th>
+                    <th>Right Due
+                    </th>
+                    <th>Unit Held
+                    </th>
+                    <th>Unit Price
+                    </th>
+                    <th>Amount
+                    </th>
                 </tr>
                 {% for holder in shareholders%}
                 <tr>

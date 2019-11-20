@@ -4,10 +4,10 @@ from wtforms.validators import DataRequired, Length
 
 
 class SearchForm_logic(FlaskForm):
-    criteria = SelectField('Search By:',  choices=[('name', 'NAME'),('acno', 'Account Number')], 
+    criteria = SelectField('Select Name or Account Number:',  choices=[('name', 'NAME'),('acno', 'ACCOUNT NUMBER')], 
     render_kw={"placeholder":"Start typing ..."})
 
-    identifier = StringField('Value',description=['For Name search: You can either enter your Last Name, \
+    identifier = StringField('Type Name or Account Number here',description=['For Name search: You can either enter your Last Name, \
     First Name, Other Name , Full Name','Enter CSCS Account Number'], 
     validators=[DataRequired(), Length(min=1,max=35,message='Search value is not permitted')])
     search = SubmitField('Search')

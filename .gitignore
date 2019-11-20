@@ -208,3 +208,5 @@ venv.bak/
 migration/
 migration
 .sqlite3
+
+.code-workspace.code-workspace

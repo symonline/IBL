@@ -27,7 +27,7 @@ class ShareHolder(db.Model):
     cscs_account_no = db.Column(db.Integer, index=True, nullable=True)
     address = db.Column(db.String(300), nullable=True)
     agent_member_code = db.Column(db.String(20), nullable=True)
-    timestamp = db.Column(db.DateTime, default=datetime.utcnow(), index=True )
+    timestamp = db.Column(db.String(20), default=datetime.utcnow(), index=True, nullable=True )
     rightowned = db.relationship('Right', backref='investor' , lazy='dynamic')
 
     def __init__(self, **kwargs):
@@ -187,7 +187,7 @@ class Right(db.Model):
     additional_apply = db.Column(db.Integer, nullable=True)
     additional_price = db.Column(db.Integer, nullable=True)
     balance = db.Column(db.Integer, nullable=True)
-    timestamp = db.Column(db.DateTime, default = datetime.utcnow(), index=True)
+    timestamp = db.Column(db.String(20), default = datetime.utcnow(), index=True)
     
     def __init__(self, **kwargs):
         self.__dict__.update(kwargs)
@@ -322,7 +322,7 @@ class HoldersRight(db.Model):
     additional_apply = db.Column(db.Integer, nullable=True)
     additional_price = db.Column(db.Integer, nullable=True)
     balance = db.Column(db.Integer, nullable=True)
-    timestamp = db.Column(db.DateTime, default = datetime.utcnow(), index=True)
+    timestamp = db.Column(db.String(20), default = datetime.utcnow(), index=True)
     
     def __init__(self, **kwargs):
         self.__dict__.update(kwargs)
