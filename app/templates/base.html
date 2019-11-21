@@ -3,10 +3,13 @@
 
 <head>
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+        integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" />
+    <link rel="shortcut icon" href="../static/img/favicon.ico" type="image/x-icon">
 
     <!-- Compiled and minified CSS -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
+    <!-- <link rel="stylesheet" href="../static/css/materialize.css"> -->
     <link rel="stylesheet" href="../static/css/styles.css"> {%if title %}
     <title>{{title}} IBL RIGHT ISSUE</title>
     {%else%}
@@ -15,36 +18,86 @@
 
 </head>
 
-<body>
-    <div class="content">
-        <div class="row">
-            <div class="logo">
-                <img style="width: 101px; height: 95px;" id="Picture 57" src="../static/img/logo-smaller.png" alt="APEL" class=""> <img id="Picture 57" src="../static/img/nlogo_0.png" alt="IBL" class="">
-            </div>
+<body class="content justify-content-center">
+    <div class="preloader"></div>
+    <div class="flex-container col s12 center" style="padding: 20px;">
+        <div class="row main">
+            <header class="flex-container justify-content-center center">
+                <div class="flex-container justify-content-center center">
+                    <a href="{{url_for('index')}}"><img id="Picture 57" src="../static/img/ibl-logo.png" alt="IBL"
+                            class="center"></a>
+                    <br>
+
+                </div>
+            </header>
+
+            <p class="red alertt" role="alertt">
+                {% with messages =get_flashed_messages() %}
+                {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %} {% endwith %}</p>
+
             <div>
-                IBL:
-                <a href="{{url_for('search')}}">Search Again</a>
-                <a href="{{url_for('index')}}">Index</a><br>
-            </div>
-            {% with messages =get_flashed_messages() %} {% if messages %}
-            <ul>
-                {% for message in messages %}
-                <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
-            {% endif %} {% endwith %}
-            <div>
-                <div>{% block home %} {% endblock %}</div>
-                <div>{% block search_form %} {% endblock %}</div>
+                <div class="white-text">{% block home %} {% endblock %}</div>
+                <div class="white-text">{% block search_form %} {% endblock %}</div>
                 <div>{% block result %} {% endblock %}</div>
             </div>
         </div>
     </div>
 
+
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <!-- <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script> -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+        integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#table_id').DataTable({
+                // processing: true,
+                // serverSide: true
+            });
+        });
+    </script>
+
+    <script>
+        function myFunction() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("table_id");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[2];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+
+    <script>
+        $(window).load(function () {
+            $('.preloader').fadeOut('slow');
+        }); 
+    </script>
+
+
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script> -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+        integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+        crossorigin="anonymous"></script>
     <!-- Compiled and minified JavaScript -->
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
     <!-- <script>

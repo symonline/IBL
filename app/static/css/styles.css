@@ -1,60 +1,75 @@
 body {
-    padding: 20px;
+    color: black !important;
+    text-decoration-color: black !important;
 }
-
-input[type="radio"] {
-    padding: 0;
+p.alertt>ul>li{
     display: block;
-    position: relative;
-    color: #45a049;
+    text-decoration-color: red !important;
+    color: red !important;
+    
 }
-
-.with-gap {
+ul li {
+  list-style-type: none !important;
+  margin: 0;
+  padding: 0;
+  text-decoration-color: red !important;
+  color: red !important;
+}
+.preloader {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100vh;
+   z-index: 9999;
+   background-image: url('../img/preloader.gif');
+   background-repeat: no-repeat; 
+   background-color: #FFF;
+   background-position: center;
+}
+.main{
     display: block;
-    position: absolute;
 }
-
+.white-text{
+    color: white;
+    text-decoration-color: white !important;
+}
 .logo {
-    display: flex-box;
-    position: relative;
+    display: block;
+    justify-content: center;
+    padding: 30px;
+    margin: 10px;
 }
-
 .btn {
     position: fixed;
     top: 40px;
     left: 150px;
     width: 200px;
     height: 80px;
-    display: inline;
     justify-content: center;
     background-color: black;
 }
-
 .form {
     padding: 0;
     margin: 0;
 }
-
-div.content {
+.content {
     position: relative;
     display: block;
-    padding-bottom: 50px;
-    margin-bottom: 50px;
-    width: 70%;
+    align-items: center !important;
+    background-image: url('../img/home.jpg');
+    background-position-x: center;
+    width: cover;
 }
-
 .curier {
     font-family: curier;
 }
-
 .bold {
     font-weight: bold;
 }
-
 h1 span {
     text-transform: uppercase;
 }
-
 .top {
     background: #176f52;
     color: #f2f2f2;
@@ -62,52 +77,45 @@ h1 span {
     bottom: 0px;
     padding-bottom: 0;
 }
-
 .flex-container {
     display: flex;
     justify-content: center;
     justify-content: space-around
 }
-
 .flex-right {
     text-align: right;
     justify-content: right;
     line-height: 20px;
 }
-
 .flex-left {
     text-align: left;
     justify-content: left;
 }
-
 .slender {
     font-size: 10px;
     font-style: italic;
 }
-
 .jumbotron {
     line-height: 15px;
     padding: 5px;
     margin: 0px;
 }
-
 .jumbo {
     line-height: 15px;
     padding: 5px;
     margin: 0px;
 }
-
 input[type=text],
 select {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
+    color: black;
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
 }
-
 input[type=submit] {
     width: 100%;
     background-color: #4CAF50;
@@ -118,31 +126,25 @@ input[type=submit] {
     border-radius: 4px;
     cursor: pointer;
 }
-
 input[type=submit]:hover {
     background-color: #45a049;
 }
-
 #investors {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
 }
-
 #investors td,
 #customers th {
     border: 1px solid #ddd;
     padding: 8px;
 }
-
 #investors tr:nth-child(even) {
     background-color: #f2f2f2;
 }
-
 #investors tr:hover {
     background-color: #ddd;
 }
-
 #investors th {
     padding-top: 12px;
     padding-bottom: 12px;
@@ -150,15 +152,14 @@ input[type=submit]:hover {
     background-color: #4CAF50;
     color: white;
 }
-
 @media print {
     #content::before,
     button#print,
-    .printing,
+    .print,
     #print {
         display: none;
-        padding: 0;
-        margin: 0;
+        padding: 20px;
+        margin: 20px;
         bottom: 0;
     }
 }
