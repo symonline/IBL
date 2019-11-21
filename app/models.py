@@ -361,8 +361,6 @@ class HoldersRight(db.Model):
 
         # return all_acno
     
-    
-    
     @classmethod
     def get_holder_by_holder(cls, value, pages): # where reg_no is an existing shareholder registrars account no
         # return cls.query.filter(cls.fname.like("%" + value + "%")).all()
