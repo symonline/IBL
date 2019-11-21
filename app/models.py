@@ -344,6 +344,7 @@ class HoldersRight(db.Model):
                 fn = cls.query.filter_by(fname = name).all()# paginate(page=pages, per_page=10)
                 on = cls.query.filter_by(oname = name).all()# paginate(page=pages, per_page=10)
                 ln = cls.query.filter_by(lname = name).all()# paginate(page=pages, per_page=10)
+                
                 all_names.append(list(itertools.chain(fn, on, ln)))
             #all_names.append(all_names)
                 my_list = list(set(reduce(operator.iconcat, all_names)))
