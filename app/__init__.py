@@ -33,7 +33,7 @@ db_password = Config.DB_PASSWORD
 connection_name = Config.DB_CONNECTION_NAME
 '''
 # db_url = f'/cloudsql/{Config.DATABASE_URL}'   google cloud sql
-
+app.config['DATABASE_URI'] = os.environ.get('DATABASE_URL')
 # DB_URL = f'postgresql+psycopg2://{db_user}:{db_password}@{db_url}/{db_name}' google cloud sql
 
 # app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL or 'sqlite:///right-database.sqlite3' 
