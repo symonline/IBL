@@ -33,10 +33,10 @@ db_password = Config.DB_PASSWORD
 connection_name = Config.DB_CONNECTION_NAME
 '''
 # db_url = f'/cloudsql/{Config.DATABASE_URL}'   google cloud sql
-DATABASE_URL ='postgres://oholkjlekcyeki:5ce0c19497d9f781f6c1d1a172444d1e861fed1a8f5a7bc7aea2b00cfd5548cc@ec2-174-129-214-193.compute-1.amazonaws.com:5432/derf5i0bvu168'
+
 # DB_URL = f'postgresql+psycopg2://{db_user}:{db_password}@{db_url}/{db_name}' google cloud sql
 
-app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL or 'sqlite:///right-database.sqlite3' 
+# app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL or 'sqlite:///right-database.sqlite3' 
 #app.config['SQLALCHEMY_DATABASE_URI'] = DB_URL
 app.config['SQLALCHEMY_TRACK_MODIFICATION'] = False
 
