@@ -9,7 +9,8 @@ import os
 
 app = Flask(__name__)
 app.config.from_object(Config)
-db = SQLAlchemy(app)
+db = SQLAlchemy() 
+db.init_app(app)
 
 # from manage import migrate, manager
 
