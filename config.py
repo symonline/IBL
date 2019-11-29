@@ -15,7 +15,6 @@ class Config(object):
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'you-will-never-guess'
     DEBUG = os.environ.get('DEBUG')
     HOST = os.environ.get('HOST')
-    DATABASE_URI = os.environ.get('DATABASE_URL')
     
     '''
      os.environ.get('DATABASE_URL') or f    DB_USERNAME = get_env_variable('CLOUD_SQL_USERNAME')
