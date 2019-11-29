@@ -1,16 +1,17 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from config import Config
-from flask_migrate import Migrate
+# from flask_migrate import Migrate
 import sqlite3
+# import psycopg2
+import os
 
 
 app = Flask(__name__)
 app.config.from_object(Config)
 db = SQLAlchemy(app)
 
-
-migrate=Migrate(app,db)
+# from manage import migrate, manager
 
 
 '''
@@ -25,7 +26,18 @@ else:
     '''
     
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://apvest_admin:Symbolo2@@localhost/apvest_db'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///right-database.sqlite3'
+''' google cloud sql
+db_name = Config.DB_NAME
+db_user = Config.DB_USERNAME
+db_password = Config.DB_PASSWORD
+connection_name = Config.DB_CONNECTION_NAME
+'''
+# db_url = f'/cloudsql/{Config.DATABASE_URL}'   google cloud sql
+DB_URL = os.environ.get('DATABASE_URL') # or Config.DATABASE_URL 
+# DB_URL = f'postgresql+psycopg2://{db_user}:{db_password}@{db_url}/{db_name}' google cloud sql
+
+app.config['SQLALCHEMY_DATABASE_URI'] = DB_URL or 'sqlite:///right-database.sqlite3' 
+#app.config['SQLALCHEMY_DATABASE_URI'] = DB_URL
 app.config['SQLALCHEMY_TRACK_MODIFICATION'] = False
 
 
@@ -34,4 +46,4 @@ from app import routes, models
 if __name__ == '__main__':
      # Create tables
     db.create_all()
-    app.run(host='127.0.0.1', port=5000, debug=True)
+    app.run(debug=True)

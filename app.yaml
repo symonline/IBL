@@ -1,1 +1,19 @@
 runtime: python37
+api_version: 0.1
+application: ibl-rights
+version: v0.1
+
+env_variables:
+    ALLOWED_HOSTS: .appspot.com
+    DEBUG: 'False'
+    FLASK_APP: rights.py
+    SECRETE_KEY: f3e319e4473d4801392baf7e878b2fdc
+    
+    # DATABASE_URL: 
+    CLOUD_SQL_USERNAME: postgres
+    CLOUD_SQL_PASSWORD: Symbolo2@
+    CLOUD_SQL_DATABASE_NAME: right_database 
+    CLOUD_SQL_CONNECTION_NAME: eright-255019:europe-west2:reg-db
+
+    GOOGLE_APPLICATION_CREDENTIALS: /srv/the/path/to/json/key/file
+

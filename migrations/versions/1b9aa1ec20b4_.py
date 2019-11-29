@@ -1,8 +1,8 @@
-"""migrate db
+"""empty message
 
-Revision ID: 7ba16732b4b5
+Revision ID: 1b9aa1ec20b4
 Revises: 
-Create Date: 2019-11-18 12:34:18.726593
+Create Date: 2019-11-29 13:39:31.266197
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '7ba16732b4b5'
+revision = '1b9aa1ec20b4'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -42,7 +42,7 @@ def upgrade():
     sa.Column('additional_apply', sa.Integer(), nullable=True),
     sa.Column('additional_price', sa.Integer(), nullable=True),
     sa.Column('balance', sa.Integer(), nullable=True),
-    sa.Column('timestamp', sa.DateTime(), nullable=True),
+    sa.Column('timestamp', sa.String(length=20), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_index(op.f('ix_holders_right_acno'), 'holders_right', ['acno'], unique=False)
@@ -75,7 +75,7 @@ def upgrade():
     sa.Column('cscs_account_no', sa.Integer(), nullable=True),
     sa.Column('address', sa.String(length=300), nullable=True),
     sa.Column('agent_member_code', sa.String(length=20), nullable=True),
-    sa.Column('timestamp', sa.DateTime(), nullable=True),
+    sa.Column('timestamp', sa.String(length=20), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('sn')
     )
@@ -99,7 +99,7 @@ def upgrade():
     sa.Column('additional_apply', sa.Integer(), nullable=True),
     sa.Column('additional_price', sa.Integer(), nullable=True),
     sa.Column('balance', sa.Integer(), nullable=True),
-    sa.Column('timestamp', sa.DateTime(), nullable=True),
+    sa.Column('timestamp', sa.String(length=20), nullable=True),
     sa.ForeignKeyConstraint(['holder'], ['share_holder.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
