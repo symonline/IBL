@@ -65,6 +65,7 @@ def acceptance():
         session['HOLDINGS']=rholder.holdings
         session['RIGHT_DUE']=rholder.right_due
         session['PRICE']=rholder.unit_price
+        session['AMOUNT']=rholder.amount
 
         return render_template('ibl_report.html', 
                         right_applied = 0, 

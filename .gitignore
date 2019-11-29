@@ -205,8 +205,8 @@ venv.bak/
 .mypy_cache/
 .code-workspace.code-workspace
 
-migration/
-migration
+.migration/
+.migration
 .sqlite3
 .code-workspace.code-workspace
 

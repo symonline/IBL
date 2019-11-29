@@ -315,7 +315,7 @@ class HoldersRight(db.Model):
     email = db.Column(db.String(64), nullable=True)
     cscs_account_no = db.Column(db.Integer, index=True, nullable=True)
     amount = db.Column(db.Float(), nullable=True)
-    
+    '''
     right_date = db.Column(db.String(14))
     right_applied = db.Column(db.Integer, nullable=True)
     additional_right_applied = db.Column(db.Integer, nullable=True)
@@ -323,6 +323,7 @@ class HoldersRight(db.Model):
     additional_price = db.Column(db.Integer, nullable=True)
     balance = db.Column(db.Integer, nullable=True)
     timestamp = db.Column(db.String(20), default = datetime.utcnow(), index=True)
+    '''
     
     def __init__(self, **kwargs):
         self.__dict__.update(kwargs)
