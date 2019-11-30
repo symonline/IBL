@@ -9,8 +9,7 @@ import os
 
 app = Flask(__name__)
 app.config.from_object(Config)
-db = SQLAlchemy() 
-db.init_app(app)
+db = SQLAlchemy(app)
 
 # from manage import migrate, manager
 
@@ -34,10 +33,10 @@ db_password = Config.DB_PASSWORD
 connection_name = Config.DB_CONNECTION_NAME
 '''
 # db_url = f'/cloudsql/{Config.DATABASE_URL}'   google cloud sql
-app.config['DATABASE_URI'] = os.environ.get('DATABASE_URL')
+DB_URL = os.environ.get('DATABASE_URL') # or Config.DATABASE_URL 
 # DB_URL = f'postgresql+psycopg2://{db_user}:{db_password}@{db_url}/{db_name}' google cloud sql
 
-# app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL or 'sqlite:///right-database.sqlite3' 
+app.config['SQLALCHEMY_DATABASE_URI'] = DB_URL or 'sqlite:///right-database.sqlite3' 
 #app.config['SQLALCHEMY_DATABASE_URI'] = DB_URL
 app.config['SQLALCHEMY_TRACK_MODIFICATION'] = False
 
