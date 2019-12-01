@@ -1,12 +1,10 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from config import Config
-# from flask_migrate import Migrate
+from flask_migrate import Migrate
 import sqlite3
 # import psycopg2
 import os
-from flask_migrate import Migrate
-
 
 
 app = Flask(__name__)
@@ -30,18 +28,14 @@ else:
     '''
     
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://apvest_admin:Symbolo2@@localhost/apvest_db'
-''' google cloud sql
-db_name = Config.DB_NAME
-db_user = Config.DB_USERNAME
-db_password = Config.DB_PASSWORD
-connection_name = Config.DB_CONNECTION_NAME
-'''
+
 # db_url = f'/cloudsql/{Config.DATABASE_URL}'   google cloud sql
 DB_URL = os.environ.get('DATABASE_URL') # or Config.DATABASE_URL 
 # DB_URL = f'postgresql+psycopg2://{db_user}:{db_password}@{db_url}/{db_name}' google cloud sql
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///right-database.sqlite3'
+app.config['SQLALCHEMY_DATABASE_URI'] = DB_URL or os.environ.get('DATABASE_URL_LOC') # 'sqlite:///right-database.sqlite3'
 app.config['SQLALCHEMY_TRACK_MODIFICATION'] = False
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY') 
 
 
 
