@@ -31,5 +31,5 @@
             "username": "ApelUser"
         }
     ],
-    "python.pythonPath": "/home/symonline/.virtualenvs/ibl-rights/bin/python"
+    "python.pythonPath": "/home/symonline/.virtualenvs/ibl/bin/python"
 }

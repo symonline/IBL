@@ -5,11 +5,15 @@ from config import Config
 import sqlite3
 # import psycopg2
 import os
+from flask_migrate import Migrate
+
 
 
 app = Flask(__name__)
 app.config.from_object(Config)
 db = SQLAlchemy(app)
+
+migrate=Migrate(app,db)
 
 # from manage import migrate, manager
 
@@ -36,9 +40,10 @@ connection_name = Config.DB_CONNECTION_NAME
 DB_URL = os.environ.get('DATABASE_URL') # or Config.DATABASE_URL 
 # DB_URL = f'postgresql+psycopg2://{db_user}:{db_password}@{db_url}/{db_name}' google cloud sql
 
-app.config['SQLALCHEMY_DATABASE_URI'] = DB_URL or 'sqlite:///right-database.sqlite3' 
-#app.config['SQLALCHEMY_DATABASE_URI'] = DB_URL
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///right-database.sqlite3'
 app.config['SQLALCHEMY_TRACK_MODIFICATION'] = False
+
+
 
 
 from app import routes, models
@@ -46,4 +51,5 @@ from app import routes, models
 if __name__ == '__main__':
      # Create tables
     db.create_all()
-    app.run(debug=True)
+    app.run(host='127.0.0.1', port=5000, debug=True)
+
