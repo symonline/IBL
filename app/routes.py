@@ -11,15 +11,7 @@ def index():
     
     return redirect(url_for('search'))
     #return render_template('search.html', title='HOME', info = info)
-    '''
-        if request.methods == 'POST':
-            account = request.form['account_number']
-            print (account.value)
-            if account.value == '':
-                return render_template('index.htm', message='Please enter required field')
-        #if db.session.query(Rights).filter(Rights.id==account).count()==0:
-        return render_template('success.html', account = account)
-    '''
+   
 @app.route('/search', methods=['GET', 'POST'])
 def search():
     # load the form object with arguments from form.py
@@ -36,7 +28,7 @@ def search():
         shareholders = HoldersRight.get_holder_by_value(schoice, sholder_name, page) 
         if not shareholders:
             # display a not succefull message and return the user back to the Search page
-            flash ("Share Holder Number is either wrong or Don't exist")
+            flash ("ShareHolder Number or Name is either wrong or Don't exist")
             return redirect(url_for('search'))
         # display a successful message from validation on the base template
         flash(f'Right info requested for Shareholder: {sform.criteria.data}, Identifier: { sform.identifier.data}')
