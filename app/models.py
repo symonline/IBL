@@ -376,4 +376,17 @@ class HoldersRight(db.Model):
         if ln:
             return ln
             # return cls.query.filter(cls.name.like("%" + value + "%")).all()
+
+    @classmethod
+    def create_new(cls,reg_acc_no, obj=0): # Where obj is a ShareHolder and reg_acc_no is shareholder registrars account no
+        if not obj : # Ensure SHAREHOLDER Object/obj and Registrars account no don't exist before creation(integrity)
+            if  reg_acc_no is False: 
+                db.session.add(obj)
+                db.session.commit()
+                cls.__created_share_holders__.append(obj) # Add newly created SHAREHOLDER to Global variable
+                return True
+            else:
+                return False
+        else:
+            return False
     
