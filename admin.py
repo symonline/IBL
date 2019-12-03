@@ -35,4 +35,4 @@ val=None
 for row in df:
      holder = HoldersRight(id = int(row['ID']), names = row['NAME'], acno = int(row['ACCOUNT_NUMBER']), \
      fname = row['FIRST_NAME'], oname = row['OTHER_NAMES'], lname = row['LAST_NAME'],address = row['ADDRESS'],\
-     holdings = int(row['TOTAL_HOLDING']), right_due=int(row['RIGHTS_DUE']), unit_price = float(row['UNIT_PRICE']),amount = float(row['AMOUNT']))
+     holdings = int(row['TOTAL_HOLDING']), right_due=int(row['RIGHTS_DUE']), unit_price = float(row['UNIT_PRICE']),amount = float(row['RIGHT_AMOUNT']))
