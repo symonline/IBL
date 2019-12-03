@@ -1,3 +1,4 @@
+'''
 import click
 from flask.cli import with_appcontext
 
@@ -8,5 +9,5 @@ from app.models import HoldersRight
 @with_appcontext
 def create_tables():
     db.create_all()
-
+'''
     

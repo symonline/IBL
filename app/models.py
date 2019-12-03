@@ -335,7 +335,7 @@ class HoldersRight(db.Model):
             return cls.query.filter_by(acno = account_number).first()
 
     @classmethod
-    def get_holder_by_value(cls, choice, value, pages): # where reg_no is an existing shareholder registrars account no
+    def get_holder_by_value(cls, choice, value): # where reg_no is an existing shareholder registrars account no
         # all_acno=[]
         if choice =='name' :
             val = value.split()
@@ -376,17 +376,4 @@ class HoldersRight(db.Model):
         if ln:
             return ln
             # return cls.query.filter(cls.name.like("%" + value + "%")).all()
-
-    @classmethod
-    def create_new(cls,reg_acc_no, obj=0): # Where obj is a ShareHolder and reg_acc_no is shareholder registrars account no
-        if not obj : # Ensure SHAREHOLDER Object/obj and Registrars account no don't exist before creation(integrity)
-            if  reg_acc_no is False: 
-                db.session.add(obj)
-                db.session.commit()
-                cls.__created_share_holders__.append(obj) # Add newly created SHAREHOLDER to Global variable
-                return True
-            else:
-                return False
-        else:
-            return False
     

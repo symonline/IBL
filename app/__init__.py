@@ -37,9 +37,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = DB_URL or os.environ.get('DATABASE_URL_L
 app.config['SQLALCHEMY_TRACK_MODIFICATION'] = False
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY') 
 
-
-
-
 from app import routes, models
 
 if __name__ == '__main__':

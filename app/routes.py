@@ -25,7 +25,7 @@ def search():
         page = request.args.get('page', 1, type = int)
         # load the Shareholder model db method/function by passing form(name/acc_no/etc) agument
         #shareholders = ShareHolder.get_shareholder_by_value(schoice,sholder_name)
-        shareholders = HoldersRight.get_holder_by_value(schoice, sholder_name, page) 
+        shareholders = HoldersRight.get_holder_by_value(schoice, sholder_name) 
         if not shareholders:
             # display a not succefull message and return the user back to the Search page
             flash ("ShareHolder Number or Name is either wrong or Don't exist")
