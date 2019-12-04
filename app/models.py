@@ -299,7 +299,7 @@ class HoldersRight(db.Model):
     __tablename__='holders_right'
 
     id = db.Column(db.Integer, primary_key=True, index=True, unique=True)
-    names = db.Column(db.String(100), nullable = True)
+    names = db.Column(db.String(150), nullable = True)
     acno = db.Column(db.Integer, index=True)
     fname = db.Column(db.String(150), nullable = True,index=True)
     oname = db.Column(db.String(150), nullable = True,index=True)
