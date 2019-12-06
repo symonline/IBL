@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="../static/img/favicon.ico" type="image/x-icon">
+
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- <link rel="stylesheet" href="https://printjs-4de6.kxcdn.com/print.min.css"> -->
+
+    <title>INTERNATIONAL BREWERIES PLC RIGHT ISSUE</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="../static/css/styles.css">
+
+
+
+    <style>
+        table,
+        td,
+        tr {
+            padding: 0;
+            margin: 0;
+            border: 1px solid black;
+        }
+        
+        .slender {
+            font-size: 10px;
+            font-style: italic;
+        }
+        
+        nav {
+            background-color: #A52A2A;
+            color: #A52A2A;
+        }
+        
+        @media print {
+            #print-nav,
+            nav,
+            ul,
+            li,
+            .btn,
+            a,
+            .material-icons {
+                display: none !important;
+            }
+            .center {
+                margin: auto;
+                width: 50%;
+            }
+        }
+    </style>
+
+
+
+    <body id="printJS-doc">
+
+        <nav class="center navbar fixed" id="print-nav">
+            <div class="center nav-wrapper">
+                <ul class="center">
+                    <!-- <li><a class="waves-effect waves-light btn download brown">Download<i
+                            class="material-icons right">file_download</i></a></li> -->
+                    <li><a class="waves-effect waves-light btn print green" onclick="printJS('printJS-doc', 'html')">Print<i
+                            class="material-icons right">local_printshop</i></a></li>
+                </ul>
+            </div>
+        </nav>
+
+
+        <div class="container z-depth-3">
+
+            <div class=" container-fluid center col s12">
+                <!-- <h5 class="flex-container row"><b>ACCEPTANCE/RENUNCIATION FORM</b></h5> -->
+                <p>Issuing House</p>
+                <img src="chd-logo.png" width="200px" />
+
+                <p>on behalf of</p>
+                <img src="ibl-logo_tb1nj1.png" width="200px" />
+
+                <div class="container-fluid">
+                    <h6 class="flex-container row"><b>INTERNATIONAL BREWERIES PLC</b></h6><br>
+                    <div class="container center">RIGHTS ISSUE OF <b>18,266,206,614</b> ORDINARY SHARES OF 50 KOBO EACH AT N9.00K PER SHARE ON THE BASIS OF SEVENTEEN(17) NEW SHARE FOR EVERY EIGHT(8) SHARES HELD AS AT NOVEMBER 6TH, 2019
+                        <b>PAYABLE IN FULL ON ACCEPTANCE</b>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="container-fluid">
+                <hr height="5px">
+
+                <div class="dflex s12 m12 l12">
+                    <!-- <div class="left s12">
+                    Acceptance List Opens<br>
+                    December 5, 2019
+                </div> -->
+
+                    <div class="center s12">
+                        <b>A/C Number:</b> {{session.get('ACNO')}}<br>
+                        <b>Holdings:</b> {{session.get('HOLDINGS')}} Units <br>
+                        <b>Right Due:</b> {{session.get('RIGHT_DUE')}} Units<br>
+                        <b>Unit Price:</b> {{session.get('PRICE')}} Naira<br>
+                        <b>Amount:</b> {{session.get('AMOUNT')}} Naira<br>
+                    </div>
+
+                    <!-- <div class="right s12">
+                    Acceptance List Closes<br>
+                    December 24, 2019
+                </div> -->
+                </div>
+                <hr>
+            </div>
+
+            <div class="container-fluid">
+                <div class="slender">
+                    <p><b>INSTRUCTION FOR COMPLETING THE ACCEPTANCE / RENUNCIATION FORM</b></p>
+
+                    <p>1. Acceptance and/or renunciation must be made on this Acceptance/Renunciation Form. Photocopies or scanned copies of the Form will be rejected.</p>
+
+                    <p>Allottees should complete only ONE of the boxes marked A and B on the reverse of this form. Shareholders accepting the provisional allotment in full should complete box A and submit their Acceptance/Renunciation Forms to any of the
+                        Receiving Agents listed on Page 49 of the Rights Circular together with a cheque or bank draft made payable to the Receiving Agent for the full amount payable on acceptance. The cheque or draft must be crossed “CHDA/INTERNATIONAL
+                        BREWERIES 2019 RIGHTS ISSUE”, with the name, address and mobile number of the shareholder written on the back. Any payment made electronically or with a value exceeding N=10 million should be made via SWIFT, RTGS or NEFT into the
+                        designated Offer Proceeds Account stated below:</p>
+
+
+                </div>
+                <table class="highlight">
+                    <tbody>
+                        <tr>
+                            <td valign="top">
+                                <p><b>Bank:</b></p>
+                            </td>
+                            <td valign="top">
+                                <p>Citibank Nigeria Limited</p>
+                            </td>
+                            <td valign="top">
+                                <p>Stanbic IBTC Bank PLC</p>
+                            </td>
+                            <td valign="top">
+                                <p>Zenith Bank PLC</p>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td valign="top">
+                                <p><b>Account Details:</b></p>
+                            </td>
+                            <td valign="top">
+                                <p>CHDA/INTERNATIONAL BREWERIES 2019 RIGHTS ISSUE</p>
+                            </td>
+
+                            <td valign="top">
+                                <p>CHDA/INTERNATIONAL BREWERIES 2019 RIGHTS ISSUE</p>
+                            </td>
+                            <td valign="top">
+                                <p>CHDA/INTERNATIONAL BREWERIES 2019 RIGHTS ISSUE</p>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td valign="top">
+                                <p><b>Account Number:</b></p>
+                            </td>
+                            <td valign="top">
+                                <p>1011629034</p>
+                            </td>
+                            <td valign="top">
+                                <p>0034400864</p>
+                            </td>
+                            <td valign="top">
+                                <p>1016838647</p>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td valign="top">
+                                <p><b>Narration:</b></p>
+                            </td>
+                            <td colspan="4" valign="top">
+                                <p><i><b>{{session.get('NAMES')}}</b>'s payment for INTERNATIONAL BREWERIES PLC</i> RIGHTS
+                                </p>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+                <img src="iblrights-a.png" class="form" width="100%"><br>
+                <br><br><br>
+                <img src="iblrights-2.png" class="form" width="100%"> <br>
+            </div>
+
+
+        </div>
+        <!--end of main div-->
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
+
+
+    </body>
+
+</html>

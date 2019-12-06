@@ -59,7 +59,7 @@ def acceptance():
         session['PRICE']=rholder.unit_price
         session['AMOUNT']=rholder.amount
 
-        return render_template('ibl_report.html', 
+        return render_template('report.html', 
                         right_applied = 0, 
                         additional_right_applied = 0)
 
