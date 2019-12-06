@@ -12,14 +12,6 @@
                     </th>
                     <th>Name
                     </th>
-                    <th>Holdings
-                    </th>
-                    <th>Right Due
-                    </th>
-                    <th>Unit Price
-                    </th>
-                    <th>Amount
-                    </th>
                 </tr>
                 {% for holder in shareholders%}
                 <tr>
@@ -29,14 +21,6 @@
                     <td>{{holder.acno}}<br>
                     </td>
                     <td>{{holder.names}}<br>
-                    </td>
-                    <td>{{holder.holdings}} <br>
-                    </td>
-                    <td>{{holder.right_due}}<br>
-                    </td>
-                    <td>{{holder.unit_price}}<br>
-                    </td>
-                    <td>{{holder.amount}}<br>
                     </td>
                 </tr>
                 {% endfor %}
