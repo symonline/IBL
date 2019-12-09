@@ -54,10 +54,10 @@ def acceptance():
         session['ACNO'] = request.form.get('option', type=int)
         rholder = HoldersRight.get_shareholder_by_acno(session.get('ACNO'))
         session['NAMES']=rholder.names
-        session['HOLDINGS']=rholder.holdings
-        session['RIGHT_DUE']=rholder.right_due
-        session['PRICE']=rholder.unit_price
-        session['AMOUNT']=rholder.amount
+        session['HOLDINGS']=f"{rholder.holdings:,.0f}"
+        session['RIGHT_DUE']=f"{rholder.right_due:,.0f}"
+        session['PRICE']=f"{rholder.unit_price:,.2f}"
+        session['AMOUNT']=f"{rholder.amount:,.2f}"
 
         return render_template('report.html', 
                         right_applied = 0, 
