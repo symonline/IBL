@@ -337,7 +337,7 @@ class HoldersRight(db.Model):
     @classmethod
     def get_holder_by_value(cls, choice, value): # where reg_no is an existing shareholder registrars account no
         # all_acno=[]
-        if choice =='name' :
+        if choice =='name' and len(value)>2 :
             val = value.split()
             all_names = list(itertools.chain([], []))
             select_names = list(itertools.chain([], []))
