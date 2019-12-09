@@ -340,22 +340,21 @@ class HoldersRight(db.Model):
         if choice =='name' :
             val = value.split()
             all_names = list(itertools.chain([], []))
+            select_names = list(itertools.chain([], []))
             # return cls.query.filter(cls.fname.like("%" + value + "%")).all()
-            for name in val: 
-                fn = cls.query.filter_by(fname = name).all()# paginate(page=pages, per_page=10)
-                on = cls.query.filter_by(oname = name).all()# paginate(page=pages, per_page=10)
-                ln = cls.query.filter_by(lname = name).all()# paginate(page=pages, per_page=10)
-                
-                all_names.append(list(itertools.chain(fn, on, ln)))
-            #all_names.append(all_names)
-                my_list = list(set(reduce(operator.iconcat, all_names)))
+            #for name in val: 
+            #fn = cls.query.filter_by(fname = name).all()# paginate(page=pages, per_page=10)
+            fn = cls.query.filter(cls.names.like("%"+ value +"%")).order_by(cls.lname).all()
+            #on = cls.query.filter_by(oname = name).all()# paginate(page=pages, per_page=10)
+            #on = cls.query.filter(cls.oname.like("%"+ name + "%")).all()
+            #ln = cls.query.filter_by(lname = name).all()# paginate(page=pages, per_page=10)
+            #ln = cls.query.filter(cls.lname.like("%"+ name + "%")).all()
             
-            '''
-            for data in my_list:
-                if value == data.names:
-                    all_names.clear
-                    return all_names.append(HoldersRight.get_shareholder_by_acno(data.acno))    
-            '''
+            #all_names.append(list(itertools.chain(fn, on, ln)))
+            all_names.append(list(itertools.chain(fn)))
+            #all_names.append(all_names)
+            my_list = list(set(reduce(operator.iconcat,all_names)))
+                
             return my_list
 
         #if isinstance((int(value)),int) and len(value)>2:
