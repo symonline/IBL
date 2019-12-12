@@ -10,7 +10,7 @@
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://printjs-4de6.kxcdn.com/print.min.css">
+    <!-- <link rel="stylesheet" href="https://printjs-4de6.kxcdn.com/print.min.css"> -->
 
     <title>INTERNATIONAL BREWERIES PLC RIGHT ISSUE</title>
 
@@ -19,7 +19,7 @@
 
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
+    <link rel="stylesheet" href="../static/css/styles.css">
 
 
 
@@ -43,39 +43,41 @@
         }
         
         @media print {
-            .centerr {
-                margin: auto !important;
-                flex-direction: column !important;
-                padding: auto !important;
-                width: 50% !important;
-                justify-content: center !important;
-                align-content: center !important;
+            #print-nav,
+            nav,
+            ul,
+            li,
+            .btn,
+            a,
+            .material-icons {
+                display: none !important;
+            }
+            .center {
+                margin: auto;
+                width: 50%;
             }
         }
     </style>
 
 
 
-    <body>
+    <body id="printJS-doc">
 
-        <nav class="center" id="print-nav">
+        <nav class="center navbar fixed" id="print-nav">
             <div class="center nav-wrapper">
                 <ul class="center">
-
-                    <li><a class="waves-effect waves-light btn print green" onclick="printJS('printJS-doc', 'html')">Print/Save as PDF<i
+                    <!-- <li><a class="waves-effect waves-light btn download brown">Download<i
+                            class="material-icons right">file_download</i></a></li> -->
+                    <li><a class="waves-effect waves-light btn print green" onclick="printJS('printJS-doc', 'html')">Print<i
                             class="material-icons right">local_printshop</i></a></li>
-                    <li><a href="https://iblright.apel.com.ng" class="waves-effect waves-light btn brown">Search Again<i class="material-icons right">search</i></a>
-                    </li>
-                    <li><a href="http://registrars.apel.com.ng/?ddownload=307" class="waves-effect waves-light btn brown">Trade Your Right<i class="material-icons right">Trade</i></a>
-                    </li>
                 </ul>
             </div>
         </nav>
 
 
-        <div class="container z-depth-3" id="printJS-doc">
+        <div class="container z-depth-3">
 
-            <div class="centerr container-fluid center col s12">
+            <div class=" container-fluid center col s12">
                 <!-- <h5 class="flex-container row"><b>ACCEPTANCE/RENUNCIATION FORM</b></h5> -->
                 <p>Issuing House</p>
                 <img src="https://res.cloudinary.com/tokyojames/image/upload/v1575635193/chd-logo_mvxr8j.png" width="200px" />
@@ -123,8 +125,8 @@
 
                     <p>1. Acceptance and/or renunciation must be made on this Acceptance/Renunciation Form. Photocopies or scanned copies of the Form will be rejected.</p>
 
-                    <p>2. Allottees should complete only ONE of the boxes marked A and B on the reverse of this form. Shareholders accepting the provisional allotment in full should complete box A and submit their Acceptance/Renunciation Forms to any of
-                        the Receiving Agents listed on Page 49 of the Rights Circular together with a cheque or bank draft made payable to the Receiving Agent for the full amount payable on acceptance. The cheque or draft must be crossed “CHDA/INTERNATIONAL
+                    <p>Allottees should complete only ONE of the boxes marked A and B on the reverse of this form. Shareholders accepting the provisional allotment in full should complete box A and submit their Acceptance/Renunciation Forms to any of the
+                        Receiving Agents listed on Page 49 of the Rights Circular together with a cheque or bank draft made payable to the Receiving Agent for the full amount payable on acceptance. The cheque or draft must be crossed “CHDA/INTERNATIONAL
                         BREWERIES 2019 RIGHTS ISSUE”, with the name, address and mobile number of the shareholder written on the back. Any payment made electronically or with a value exceeding N=10 million should be made via SWIFT, RTGS or NEFT into the
                         designated Offer Proceeds Account stated below:</p>
 
@@ -192,8 +194,8 @@
                 </table>
 
                 <img src="https://res.cloudinary.com/tokyojames/image/upload/v1575634695/iblrights-a_dlronk.png" class="form" width="100%"><br>
-                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-                <img src="https://res.cloudinary.com/tokyojames/image/upload/v1575634696/iblrights-2_ryqqde.png" class="form" width="100%" height="100%"> <br>
+                <br><br><br>
+                <img src="https://res.cloudinary.com/tokyojames/image/upload/v1575634696/iblrights-2_ryqqde.png" class="form" width="100%"> <br>
             </div>
 
 

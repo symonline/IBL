@@ -359,7 +359,6 @@ class HoldersRight(db.Model):
 
         #if isinstance((int(value)),int) and len(value)>2:
         return (cls.query.filter_by(acno = value).all())
-
         # return all_acno
     
     @classmethod
