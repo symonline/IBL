@@ -162,7 +162,6 @@ class ShareHolder(db.Model):
         return f'<SN:{self.sn} ACCOUNT: {self.acno} Nmes:{self.name}>'
 
 
-
 class Right(db.Model):
 
     item = ''
