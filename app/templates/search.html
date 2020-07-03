@@ -14,6 +14,11 @@
             {% for error in sform.identifier.errors %}
             <span class="alert alert-warning" role="alert">{{error}}</span> {%endfor%}
         </div>
+          <div class="alert alert-warning" role="alert">
+            {{sform.identifier2.label}}<br> {{sform.identifier2}}<br> <i>{{sform.identifier2.description[0] }}</i><br>
+            {% for error in sform.identifier2.errors %}
+            <span class="alert alert-warning" role="alert">{{error}}</span> {%endfor%}
+        </div>
         <div>
             {{sform.search}}
         </div>

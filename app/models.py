@@ -333,7 +333,7 @@ class HoldersRight(db.Model):
             return cls.query.filter_by(acno = account_number).first()
 
     @classmethod
-    def get_holder_by_value(cls, choice, value): # where reg_no is an existing shareholder registrars account no
+    def get_holder_by_value(cls, choice, value, company): # where reg_no is an existing shareholder registrars account no
         # all_acno=[]
         if choice =='name' and len(value)>2 :
             val = value.split()
@@ -342,8 +342,8 @@ class HoldersRight(db.Model):
             # return cls.query.filter(cls.fname.like("%" + value + "%")).all()
             #for name in val: 
             #fn = cls.query.filter_by(fname = name).all()# paginate(page=pages, per_page=10)
-            fn = cls.query.filter(cls.names.like("%"+ value +"%")).order_by(cls.lname).all()
-            #on = cls.query.filter_by(oname = name).all()# paginate(page=pages, per_page=10)
+            fn = cls.query.filter(cls.names.like("%"+ value +"%")).filter(cls.company==company).order_by(cls.lname).all()
+            #fn = fn.query.filter(cls.company=company)
             #on = cls.query.filter(cls.oname.like("%"+ name + "%")).all()
             #ln = cls.query.filter_by(lname = name).all()# paginate(page=pages, per_page=10)
             #ln = cls.query.filter(cls.lname.like("%"+ name + "%")).all()

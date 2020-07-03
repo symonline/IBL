@@ -22,17 +22,20 @@ def search():
     if sform.validate_on_submit():
         # load the the account number/ name /etc from the form class (form.py)
         sholder_name = sform.identifier.data.upper()
+        company_name = sform.identifier2.data.upper()
         schoice = sform.criteria.data
         page = request.args.get('page', 1, type = int)
         # load the Shareholder model db method/function by passing form(name/acc_no/etc) agument
         #shareholders = ShareHolder.get_shareholder_by_value(schoice,sholder_name)
-        shareholders = HoldersRight.get_holder_by_value(schoice, sholder_name) 
+        shareholders = HoldersRight.get_holder_by_value(schoice,
+                                                        sholder_name,
+                                                        company_name)
         if not shareholders:
             # display a not succefull message and return the user back to the Search page
-            flash ("ShareHolder Number or Name is either wrong or Don't exist")
+            flash ("ShareHolder Number or Name / company is either wrong or Don't exist")
             return redirect(url_for('search'))
         # display a successful message from validation on the base template
-        flash(f'Right info requested for Shareholder: {sform.criteria.data}, Identifier: { sform.identifier.data}')
+        flash(f'Right info requested for Shareholder: {sform.criteria.data}, Identifier: { sform.identifier.data}, Identifier: { sform.identifier2.data}')
         # get the equivallent rights details
         # on the assumption that a shareholder to a right (one to one relationship)
         # name=session[shareholders]:

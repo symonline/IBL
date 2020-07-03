@@ -12,6 +12,10 @@
                     </th>
                     <th>Name
                     </th>
+                     <th>Company
+                    </th>
+                    <th>Div-No
+                    </th>
                 </tr>
                 {% for holder in shareholders%}
                 <tr>
@@ -22,6 +26,11 @@
                     </td>
                     <td>{{holder.names}}<br>
                     </td>
+                      <td>{{holder.company}}<br>
+                    </td>
+                      <td>{{holder.bvn}}<br>
+                    </td>
+                    
                 </tr>
                 {% endfor %}
                 <div>
