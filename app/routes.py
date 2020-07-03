@@ -3,6 +3,7 @@ from app import app, db
 # from flask_login import login_user
 from app.models import ShareHolder, Right, HoldersRight
 from app.forms import SearchForm_logic, ConsentForm_logic
+import pandas as pd
 
 @app.route('/')
 @app.route('/index')

@@ -286,7 +286,6 @@ class SearchOption(db.Model):
     def __repr__(self):
         return f'<Search_Option Code: {self.code}, Search_Option Display Name: {self.name}>'
 
-
 class HoldersRight(db.Model):
 
     item = ''
@@ -298,12 +297,12 @@ class HoldersRight(db.Model):
     __tablename__='holders_right'
 
     id = db.Column(db.Integer, primary_key=True, index=True, unique=True)
-    names = db.Column(db.String(150), nullable = True)
-    acno = db.Column(db.Integer, index=True)
+    names = db.Column(db.String(500), nullable = True)
+    acno = db.Column(db.Integer, index=True, nullable = False)
     fname = db.Column(db.String(150), nullable = True,index=True)
     oname = db.Column(db.String(150), nullable = True,index=True)
     lname = db.Column(db.String(150), nullable = True,index=True)
-    address = db.Column(db.String(500), nullable=True)
+    address = db.Column(db.String(700), nullable = True)
     holdings = db.Column(db.Integer, nullable=True)
     right_due = db.Column(db.Integer, nullable=True)
     unit_price = db.Column(db.Float(), nullable=True)
@@ -373,4 +372,42 @@ class HoldersRight(db.Model):
         if ln:
             return ln
             # return cls.query.filter(cls.name.like("%" + value + "%")).all()
+
+class Company(db.Model):
     
+    item = ''
+    signal = ''
+    __deleted_right__ = []
+
+    __tablename__='companies'
+
+    id = db.Column(db.Integer, primary_key=True, index=True, unique=True)
+    company = db.Column(db.String(150), nullable = True)
+    share_holder = db.Column(db.String(150), nullable = True,index=True)
+    dividend = db.Column(db.String(150), nullable = True,index=True)
+
+    
+    def __init__(self, **kwargs):
+        self.__dict__.update(kwargs)
+
+class Dividend(db.Model):
+    
+    item = ''
+    signal = ''
+    __deleted_right__ = []
+    __updated_right__ = []
+    __created_right__ = []
+
+    __tablename__='dividends'
+
+    id = db.Column(db.Integer, primary_key=True, index=True, unique=True)
+    acno = db.Column(db.Integer, index=True)
+    company = db.Column(db.String(200), nullable = True,index=True)
+    pay_no = db.Column(db.String(20), nullable=True)
+    net_amount = db.Column(db.Float, nullable =False)
+    name = db.Column(db.String(500), nullable=False)
+    
+    def __init__(self, **kwargs):
+        self.__dict__.update(kwargs)
+
+            # return cls.query.filter(cls.name.like("%" + value + "%")).all()
