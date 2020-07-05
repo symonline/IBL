@@ -79,11 +79,11 @@ def add_account(obj, db, new_list): # as in add_account(HoldersRight, db, list2)
             continue
         else:
             investor = obj(names = account[0], \
-                       acno =int(account[1]), \
-                       holdings = int(account[2]), \
-                       right_due = int(account[3]),\
-                       unit_price = float(account[4]),\
-                       amount = float(account[5]) \
+                           acno = int(account[1]),\
+                           holdings = int(account[2]),\
+                           right_due = int(account[3]),\
+                           unit_price = float(account[4]),\
+                           amount = float(account[5]) \
                             )
             db.session.add(investor)
             db.session.commit()
@@ -91,4 +91,3 @@ def add_account(obj, db, new_list): # as in add_account(HoldersRight, db, list2)
             added_account.append(account[1])
     print('List of newly added investors ...')
     print(added_account)
-        
