@@ -20,7 +20,7 @@
                 {% for holder in shareholders%}
                 <tr>
                     <td>
-                        <input class="" type="radio" name="option" value="{{holder.acno}}" /><br>
+                        <input class="" type="checkbox" name="option" value="{{holder.acno}}" /><br>
                     </td>
                     <td>{{holder.acno}}<br>
                     </td>
@@ -51,6 +51,5 @@
     </p>
 </div>
 <div>
-
 </div>
 {% endblock %}

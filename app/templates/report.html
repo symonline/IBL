@@ -12,7 +12,7 @@
 
     <link rel="stylesheet" href="https://printjs-4de6.kxcdn.com/print.min.css">
 
-    <title>INTERNATIONAL BREWERIES PLC RIGHT ISSUE</title>
+    <title>MY INTERNATIONAL BREWERIES PLC UNCLAIMED DIVIDEND </title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
@@ -57,7 +57,6 @@
 
 
     <body>
-
         <nav class="center" id="print-nav">
             <div class="center nav-wrapper">
                 <ul class="center">
@@ -103,10 +102,9 @@
 
                     <div class="center s12">
                         <b>A/C Number:</b> {{session.get('ACNO')}}<br>
-                        <b>Holdings:</b> {{session.get('HOLDINGS')}} Units <br>
-                        <b>Right Due:</b> {{session.get('RIGHT_DUE')}} Units<br>
-                        <b>Unit Price:</b> {{session.get('PRICE')}} Naira<br>
-                        <b>Amount:</b> {{session.get('AMOUNT')}} Naira <br>
+                        <b>Dividend Batch:</b> {{session.get('DIVIDEND_BATCH')}} <br>
+                        <b>Company:</b> {{session.get('COMPANY')}}<br>
+                        <b>Name:</b> {{session.get('NAMES')}}<br>
                     </div>
 
                     <!-- <div class="right s12">
@@ -134,50 +132,42 @@
                     <tbody>
                         <tr>
                             <td valign="top">
-                                <p><b>Bank:</b></p>
+                                <p><b>SN:</b></p>
                             </td>
                             <td valign="top">
-                                <p>Citibank Nigeria Limited</p>
+                                <p><b>NAMES</b></p>
                             </td>
                             <td valign="top">
-                                <p>Stanbic IBTC Bank PLC</p>
-                            </td>
+                                <p><b>ACCOUNT N0</b></p>
+                            </td>  
                             <td valign="top">
-                                <p>Zenith Bank PLC</p>
+                                <p><b>COMPANY</b></p>
+                            </td>
+                              <td valign="top">
+                                <p><b>DIVIDEND BATCH</b></p>
                             </td>
                         </tr>
 
+                        {% for holder in holders%}
                         <tr>
                             <td valign="top">
-                                <p><b>Account Details:</b></p>
+                                <p><b>{{loop.index}}:</b></p>
                             </td>
                             <td valign="top">
-                                <p>CHDA/INTERNATIONAL BREWERIES 2019 RIGHTS ISSUE</p>
+                                <p>{{holder.names}}</p>
                             </td>
 
                             <td valign="top">
-                                <p>CHDA/INTERNATIONAL BREWERIES 2019 RIGHTS ISSUE</p>
+                                <p>{{holder.acno}}</p>
                             </td>
                             <td valign="top">
-                                <p>CHDA/INTERNATIONAL BREWERIES 2019 RIGHTS ISSUE</p>
+                                <p>{{holder.company}}</p>
+                            </td>
+                             <td valign="top">
+                                <p>{{holder.bvn}}</p>
                             </td>
                         </tr>
-
-                        <tr>
-                            <td valign="top">
-                                <p><b>Account Number:</b></p>
-                            </td>
-                            <td valign="top">
-                                <p>1011629034</p>
-                            </td>
-                            <td valign="top">
-                                <p>0034400864</p>
-                            </td>
-                            <td valign="top">
-                                <p>1016838647</p>
-                            </td>
-                        </tr>
-
+                        {% endfor %}
                         <tr>
                             <td valign="top">
                                 <p><b>Narration:</b></p>

@@ -327,22 +327,23 @@ class HoldersRight(db.Model):
         self.__dict__.update(kwargs)
 
     @classmethod
-    def get_shareholder_by_acno(cls, account_number): # where reg_no is an existing shareholder registrars account no
-        if account_number:
-            #return cls.query.filter_by(name = sname).all()
-            return cls.query.filter_by(acno = account_number).first()
+    def get_shareholder_by_acno(cls, account_number_list): # where reg_no is an existing shareholder registrars account no
+        if account_number_list:
+            share_holders = cls.query.filter(cls.acno.in_(account_number_list)).all()
+            #acc = cls.query.filter_by(acno = account).all()#.first()
+        return share_holders
 
     @classmethod
     def get_holder_by_value(cls, choice, value, company): # where reg_no is an existing shareholder registrars account no
         # all_acno=[]
-        if choice =='name' and len(value)>2 :
+        if choice =='name'.lstrip():# and len(value)>2 :
             val = value.split()
             all_names = list(itertools.chain([], []))
             select_names = list(itertools.chain([], []))
             # return cls.query.filter(cls.fname.like("%" + value + "%")).all()
             #for name in val: 
             #fn = cls.query.filter_by(fname = name).all()# paginate(page=pages, per_page=10)
-            fn = cls.query.filter(cls.names.like("%"+ value +"%")).filter(cls.company==company).order_by(cls.lname).all()
+            fn = cls.query.filter(cls.names.like("%"+ value +"%")).filter(cls.company==company+' ').order_by(cls.names).all()
             #fn = fn.query.filter(cls.company=company)
             #on = cls.query.filter(cls.oname.like("%"+ name + "%")).all()
             #ln = cls.query.filter_by(lname = name).all()# paginate(page=pages, per_page=10)
@@ -356,7 +357,7 @@ class HoldersRight(db.Model):
             return my_list
 
         #if isinstance((int(value)),int) and len(value)>2:
-        return (cls.query.filter_by(acno = value).all())
+        return (cls.query.filter_by(acno = value).filter(cls.company==company+' ').all())
         # return all_acno
     
     @classmethod

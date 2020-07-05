@@ -16,11 +16,11 @@ class SearchForm_logic(FlaskForm):
     identifier = StringField('Type Name or Account Number here',
                              description=info,
                              validators=[DataRequired(),
-                                         Length(min=1, max=35, message=info2)])
+                                         Length(min=2, max=35, message=info2)])
     
     identifier2 = SelectField('Select Company:',
-                              choices=[('ibl', 'INTERNATIONAL BREWERIES PLC'),
-                                       ('lasaco', 'LASACO'),
+                              choices=[('INTERNATIONAL BREWERIES PLC', 'INTERNATIONAL BREWERIES PLC'),
+                                       ('lasaco', 'LASACO PLC'),
                                        ('ncr', 'NCR NIGERIA PLC'),
                                        ('nem', 'NEM INSURANCE PLC'),
                                        ('pharmadeko', 'PHARMA DEKO PLC'),
