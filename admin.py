@@ -2,19 +2,32 @@
 
 
 
-csvfile='/home/symonline/projects/ibl-rights/app/static/export.csv'
+csvfile='~/app/static/files/exportlocal.csv'
+df = pd.read_csv(csvfile,header = 0)
+
 '''
-df = pd.read_csv(csvfile, \
-    index_col='ACCOUNT_NUMBER', \
+
+    index_col=0, \
     header = 0, \
     names = ['ID','NAME','ACCOUNT_NUMBER','FIRST_NAME','OTHER NAME','LAST_NAME','ADDRESS','TOTAL HOLDING', 'RIGHTS_DUE' , 'UNIT_PRICE','COMP' , 'BVN' ,'CHN','PHONE' ,'EMAIL' ,'CSCS_NO','AMOUNT'])
 
 
 for holder in df:
-    holder = HoldersRight(id=holder['ID'],names=holder['NAME'],acno=holder['ACCOUNT_NUMBER'],\
-    fname=holder['FIRST_NAME'],oname=holder['OTHER NAME'],lname=holder['LAST_NAME'],\
-    address=holder['ADDRESS'],holdings=holder['TOTAL HOLDING'],right_due=holder['RIGHTS_DUE'],\
-    unit_price=holder['UNIT_PRICE'],amount=holder['AMOUNT'])
+    holder['ID']=holder['ID'].astype(str).astype(int)
+    holder['NAME']=holder['NAME'].astype(str)
+    holder['ACCOUNT_NUMBER']=holder['ACCOUNT_NUMBER'].astype(str).astype(int)
+    holder['FIRST_NAME']=holder['FIRST_NAME'].astype(str)
+    holder['OTHER NAME']=holder['OTHER NAME'].astype(str)
+    holder['LAST_NAME']=holder['LAST_NAME'].astype(str)
+    holder['ADDRESS']=holder['ADDRESS'].astype(str)
+    holder['TOTAL HOLDING']=holder['TOTAL HOLDING'].astype(str).astype(int)
+    holder['RIGHTS_DUE']=holder['RIGHTS_DUE'].astype(str).astype(int)
+    holder['UNIT_PRICE']=holder['UNIT_PRICE']
+    holder['COMP']=holder['COMP'].astype(str)
+    holder['BVN']=holder['BVN'].astype(str).astype(int)
+   
+
+    holder = HoldersRight(id=holder['ID'],names=holder['NAME'],acno=holder['ACCOUNT_NUMBER'],company=holder['COMP'],bvn=holder['BVN'],amount=holder['AMOUNT'])
 
     db.session.add(holder)
     db.session.commit()
@@ -34,9 +47,8 @@ df=csv.DictReader(open(csvfile))
 val=None
 #
 for row in df:
-     holder = HoldersRight(id = row['ID'], names = row['NAME'], acno = ['ACCOUNT_NUMBER'], \
-     fname = row['FIRST_NAME'], oname = row['OTHER_NAME'], lname = row['LAST_NAME'],address = row['ADDRESS'],\
-     holdings = row['TOTAL_HOLDING'], right_due=row['RIGHTS_DUE'], unit_price = float(row['UNIT_PRICE']),amount = float(row['RIGHT_AMOUNT']))
+     holder = HoldersRight(id = int(row['ID']), names = row['NAMES'], acno = int(row['ACCOUNT_NUMBER']), \
+     bvn = int(row['BVN'])
 '''
 
 def amend(obj,db,list):
