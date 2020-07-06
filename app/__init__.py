@@ -33,7 +33,7 @@ else:
 DB_URL = os.environ.get('HEROKU_POSTGRESQL_ORANGE_URL') # or Config.DATABASE_URL 
 # DB_URL = f'postgresql+psycopg2://{db_user}:{db_password}@{db_url}/{db_name}' google cloud sql
 
-app.config['SQLALCHEMY_DATABASE_URI'] = DB_URL or os.environ.get('DATABASE_URL_LOC') # 'sqlite:///right-database.sqlite3'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL_LOC') or DB_URL # 'sqlite:///right-database.sqlite3'
 app.config['SQLALCHEMY_TRACK_MODIFICATION'] = False
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY') 
 

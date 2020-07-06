@@ -9,4 +9,4 @@ class Config(object):
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'you-will-never-guess'
     DEBUG = os.environ.get('DEBUG')
     HOST = os.environ.get('HOST')
-    DATABASE_URL = os.environ.get('HEROKU_POSTGRESQL_ORANGE_URL') or os.environ.get('DATABASE_URL_LOC')
+    DATABASE_URL = os.environ.get('DATABASE_URL_LOC') or os.environ.get('HEROKU_POSTGRESQL_ORANGE_URL') 
