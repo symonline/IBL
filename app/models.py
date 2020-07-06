@@ -343,7 +343,7 @@ class HoldersRight(db.Model):
             # return cls.query.filter(cls.fname.like("%" + value + "%")).all()
             #for name in val: 
             #fn = cls.query.filter_by(fname = name).all()# paginate(page=pages, per_page=10)
-            fn = cls.query.filter(cls.names.like("%"+ value +"%")).filter(cls.company==company+' ').order_by(cls.names).all()
+            fn = cls.query.filter(cls.names.like("%"+ value +"%")).filter(cls.company==company).order_by(cls.names).all()
             #fn = fn.query.filter(cls.company=company)
             #on = cls.query.filter(cls.oname.like("%"+ name + "%")).all()
             #ln = cls.query.filter_by(lname = name).all()# paginate(page=pages, per_page=10)
@@ -357,7 +357,7 @@ class HoldersRight(db.Model):
             return my_list
 
         #if isinstance((int(value)),int) and len(value)>2:
-        return (cls.query.filter_by(acno = value).filter(cls.company==company+' ').all())
+        return (cls.query.filter_by(acno = value).filter(cls.company==company).all())
         # return all_acno
     
     @classmethod
