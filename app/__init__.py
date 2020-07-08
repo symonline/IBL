@@ -25,17 +25,17 @@ if ENV == 'dev':
 else:
     app.debug = False
     app.config['SQLALCHEMY_DATABASE_URI'] = ''
-    '''
+'''
     
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://apvest_admin:Symbolo2@@localhost/apvest_db'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://symonline:Symbolo2@@localhost/divdb'
 
 # db_url = f'/cloudsql/{Config.DATABASE_URL}'   google cloud sql
-DB_URL = os.environ.get('HEROKU_POSTGRESQL_ORANGE_URL') # or Config.DATABASE_URL 
+# DB_URL = os.environ.get('HEROKU_POSTGRESQL_ORANGE_URL') # or Config.DATABASE_URL 
 # DB_URL = f'postgresql+psycopg2://{db_user}:{db_password}@{db_url}/{db_name}' google cloud sql
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL_LOC') or DB_URL # 'sqlite:///right-database.sqlite3'
-app.config['SQLALCHEMY_TRACK_MODIFICATION'] = False
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY') 
+# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('HEROKU_POSTGRESQL_ORANGE_URL')  # or DB_URL # 'sqlite:///right-database.sqlite3'
+# app.config['SQLALCHEMY_TRACK_MODIFICATION'] = False
+# app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY') 
 
 from app import routes, models
 

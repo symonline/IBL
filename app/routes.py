@@ -8,7 +8,7 @@ import pandas as pd
 @app.route('/')
 @app.route('/index')
 def index():
-    info='WELCOME TO THE IBL RIGHT OFFER TEST PAGES'
+    info='WELCOME TO THE IBL UNCLAIMED DIVIDEND PAGE'
     
     return redirect(url_for('search'))
     #return render_template('search.html', title='HOME', info = info)
@@ -47,7 +47,7 @@ def search():
                         shareholders = shareholders, company=company_name
                         )
     # Always return the search page if validation fail
-    return render_template('search.html', title='Find Right', sform = sform)
+    return render_template('search.html', title='UNCLAIMED', sform = sform)
 
 
 @app.route('/acceptance', methods=['GET', 'POST'])

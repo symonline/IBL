@@ -7,7 +7,7 @@ class SearchForm_logic(FlaskForm):
 
     info = ['For Name search: You can either enter your Last Name,\
              First Name, Other Name ,Full Name', 'Enter CSCS Account Number']
-    info2 = 'Searched value is not allowed'
+    info2 = 'Text is too short! not allowed search with 2 or more letters'
     criteria = SelectField('Select Name or Account Number:',
                            choices=[('name', 'NAME'),
                                     ('acno', 'ACCOUNT NUMBER')],
@@ -20,11 +20,11 @@ class SearchForm_logic(FlaskForm):
     
     identifier2 = SelectField('Select Company:',
                               choices=[('INTERNATIONAL BREWERIES PLC', 'INTERNATIONAL BREWERIES PLC'),
-                                       ('lasaco', 'LASACO PLC'),
-                                       ('ncr', 'NCR NIGERIA PLC'),
-                                       ('nem', 'NEM INSURANCE PLC'),
-                                       ('pharmadeko', 'PHARMA DEKO PLC'),
-                                       ('interlinked', 'INTERLINKED TECHOLOGIES PLC')],
+                                       ('LASACO PLC', 'LASACO PLC'),
+                                       ('NCR NIGERIA PLC', 'NCR NIGERIA PLC'),
+                                       ('NEM INSURANCE PLC', 'NEM INSURANCE PLC'),
+                                       ('PHARMA DEKO PLC', 'PHARMA DEKO PLC'),
+                                       ('INTERLINKED TECHNOLOGIES PLC', 'INTERLINKED TECHNOLOGIES PLC')],
                               validators=[DataRequired(),
                                           Length(min=1, max=35, message=info2)],
                               render_kw={"placeholder": "Start typing ..."})

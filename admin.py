@@ -12,22 +12,8 @@ df = pd.read_csv(csvfile,header = 0)
     names = ['ID','NAME','ACCOUNT_NUMBER','FIRST_NAME','OTHER NAME','LAST_NAME','ADDRESS','TOTAL HOLDING', 'RIGHTS_DUE' , 'UNIT_PRICE','COMP' , 'BVN' ,'CHN','PHONE' ,'EMAIL' ,'CSCS_NO','AMOUNT'])
 
 
-for holder in df:
-    holder['ID']=holder['ID'].astype(str).astype(int)
-    holder['NAME']=holder['NAME'].astype(str)
-    holder['ACCOUNT_NUMBER']=holder['ACCOUNT_NUMBER'].astype(str).astype(int)
-    holder['FIRST_NAME']=holder['FIRST_NAME'].astype(str)
-    holder['OTHER NAME']=holder['OTHER NAME'].astype(str)
-    holder['LAST_NAME']=holder['LAST_NAME'].astype(str)
-    holder['ADDRESS']=holder['ADDRESS'].astype(str)
-    holder['TOTAL HOLDING']=holder['TOTAL HOLDING'].astype(str).astype(int)
-    holder['RIGHTS_DUE']=holder['RIGHTS_DUE'].astype(str).astype(int)
-    holder['UNIT_PRICE']=holder['UNIT_PRICE']
-    holder['COMP']=holder['COMP'].astype(str)
-    holder['BVN']=holder['BVN'].astype(str).astype(int)
-   
-
-    holder = HoldersRight(id=holder['ID'],names=holder['NAME'],acno=holder['ACCOUNT_NUMBER'],company=holder['COMP'],bvn=holder['BVN'],amount=holder['AMOUNT'])
+for holder in df:    
+    holder = HoldersRight(id=holder['ID'],names=holder['NAME'],acno=holder['ACCOUNT_NO'],company=holder['COMP'],bvn=holder['BVN'],amount=holder['AMOUNT'])
 
     db.session.add(holder)
     db.session.commit()
