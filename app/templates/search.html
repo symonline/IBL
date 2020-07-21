@@ -1,29 +1,32 @@
 {% extends "base.html" %} {% block search_form %}
-<div class="center z-depth-2">
-    <h4 class="flex-container justify-content-center"> SEARCH UNCLAIMED DIVIDEND</h4>
+<div class="container-fluid center z-depth-2 form">
+<div class="row justify-content-xl-center">
+    <h5 class="flex-container justify-content-center header-text"> Search Unclaimed Dividend</h5>
     <!--from form.py  -->
 
-    <form action="" method="POST">
+    <form action="" method="POST" class="justify-content-xl-center">
         {{sform.hidden_tag()}}
-        <div class="alert alert-warning" role="alert">
+        <div class="col alert alert-warning z-depth-3" role="alert">
             {{sform.criteria.label }}<br> {{sform.criteria}}<br> {% for error in sform.criteria.errors %}
             <span class="alert alert-warning" role="alert">{{error}}</span> {%endfor%}
         </div>
-        <div class="alert alert-warning" role="alert">
+        <div class="col alert alert-warning shadow" role="alert">
             {{sform.identifier.label}}<br> {{sform.identifier}}<br> <i>{{sform.identifier.description[0] }}</i><br>
             {% for error in sform.identifier.errors %}
             <span class="alert alert-warning" role="alert">{{error}}</span> {%endfor%}
         </div>
-          <div class="alert alert-warning" role="alert">
+          <div class="col alert alert-warning z-index-2" role="alert">
             {{sform.identifier2.label}}<br> {{sform.identifier2}}<br> <i>{{sform.identifier2.description[0] }}</i><br>
             {% for error in sform.identifier2.errors %}
             <span class="alert alert-warning" role="alert">{{error}}</span> {%endfor%}
         </div>
-        <div>
+        <div class="col justify-content-center z-index-2" >
             {{sform.search}}
         </div>
 
     </form>
+
+</div>
 </div>
 
 

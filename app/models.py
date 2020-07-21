@@ -5,6 +5,7 @@ import operator
 from functools import reduce
 # import pdb
 
+
 class ShareHolder(db.Model):
     item=''
     signal=''
@@ -262,6 +263,7 @@ class Right(db.Model):
     def __repr__(self):
         return f'<Share Holder Name: {self.name}>'
 
+
 class SearchOption(db.Model):
 
     __tablename__='search_option'
@@ -285,6 +287,7 @@ class SearchOption(db.Model):
 
     def __repr__(self):
         return f'<Search_Option Code: {self.code}, Search_Option Display Name: {self.name}>'
+
 
 class HoldersRight(db.Model):
 
@@ -313,42 +316,26 @@ class HoldersRight(db.Model):
     email = db.Column(db.String(64), nullable=True)
     cscs_account_no = db.Column(db.Integer, index=True, nullable=True)
     amount = db.Column(db.Float(), nullable=True)
-    '''
-    right_date = db.Column(db.String(14))
-    right_applied = db.Column(db.Integer, nullable=True)
-    additional_right_applied = db.Column(db.Integer, nullable=True)
-    additional_apply = db.Column(db.Integer, nullable=True)
-    additional_price = db.Column(db.Integer, nullable=True)
-    balance = db.Column(db.Integer, nullable=True)
-    timestamp = db.Column(db.String(20), default = datetime.utcnow(), index=True)
-    '''
     
     def __init__(self, **kwargs):
         self.__dict__.update(kwargs)
 
     @classmethod
     def get_shareholder_by_acno(cls, account_number_list): # where reg_no is an existing shareholder registrars account no
-        if account_number_list:
-            share_holders = cls.query.filter(cls.acno.in_(account_number_list)).all()
+        share_holders = cls.query.filter(cls.acno.in_(account_number_list)).all()
             #acc = cls.query.filter_by(acno = account).all()#.first()
         return share_holders
 
     @classmethod
     def get_holder_by_value(cls, choice, value, company): # where reg_no is an existing shareholder registrars account no
         # all_acno=[]
-        if choice =='name'.lstrip():# and len(value)>2 :
+        if choice =='name'.lstrip():# and len(value)>2 
             val = value.split()
             all_names = list(itertools.chain([], []))
             select_names = list(itertools.chain([], []))
-            # return cls.query.filter(cls.fname.like("%" + value + "%")).all()
-            #for name in val: 
-            #fn = cls.query.filter_by(fname = name).all()# paginate(page=pages, per_page=10)
+        
             fn = cls.query.filter(cls.names.like("%"+ value +"%")).filter(cls.company==company).order_by(cls.names).all()
-            #fn = fn.query.filter(cls.company=company)
-            #on = cls.query.filter(cls.oname.like("%"+ name + "%")).all()
-            #ln = cls.query.filter_by(lname = name).all()# paginate(page=pages, per_page=10)
-            #ln = cls.query.filter(cls.lname.like("%"+ name + "%")).all()
-            
+
             #all_names.append(list(itertools.chain(fn, on, ln)))
             all_names.append(list(itertools.chain(fn)))
             #all_names.append(all_names)

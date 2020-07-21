@@ -57,18 +57,27 @@ ul li {
     position: relative;
     display: block;
     align-items: center !important;
-    background-image: url('../img/home.jpg');
-    background-position-x: center;
+    background-image: url('../img/logos.png');
+    background-position: center;
+    background-size: cover;
     width: cover;
 }
 .curier {
     font-family: curier;
+}
+.form{
+    height: 100vh;
+    bottom: 0;
 }
 .bold {
     font-weight: bold;
 }
 h1 span {
     text-transform: uppercase;
+}
+.header-text{
+    font-weight: 500px;
+    color: green;
 }
 .top {
     background: #176f52;

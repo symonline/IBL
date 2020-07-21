@@ -27,21 +27,26 @@
         table,
         td,
         tr {
-            padding: 0;
-            margin: 0;
-            border: 1px solid black;
+            padding: 10px;
+            margin: 10px;
+            border: 1px dashed black;
         }
-        
+        body{
+            height: 100vh
+        }
         .slender {
             font-size: 10px;
             font-style: italic;
         }
         
         nav {
-            background-color: #A52A2A;
-            color: #A52A2A;
+            background-color: #176f52;
+            color: #fff;
         }
-        
+        .report{
+            padding-top: 30px;
+            margin-bottom: 50px;
+        }
         @media print {
             .centerr {
                 margin: auto !important;
@@ -63,40 +68,29 @@
 
                     <li><a class="waves-effect waves-light btn print green" onclick="printJS('printJS-doc', 'html')">Print/Save as PDF<i
                             class="material-icons right">local_printshop</i></a></li>
-                    <li><a href="https://dividend.apel.com.ng" class="waves-effect waves-light btn brown">Search Again<i class="material-icons right">search</i></a>
+                    <li><a href="https://dividend.apel.com.ng"  class="waves-effect waves-light btn brown">Search Again<i class="material-icons right">search</i></a>
                     </li>
                 </ul>
             </div>
         </nav>
 
 
-        <div class="container z-depth-3" id="printJS-doc">
+        <div class="report container z-depth-3" id="printJS-doc">
 
-            <div class="centerr container-fluid center col s12">
+            <div class="center container-fluid col s12">
                 <!-- <h5 class="flex-container row"><b>ACCEPTANCE/RENUNCIATION FORM</b></h5> -->
-                <img src="https://res.cloudinary.com/tokyojames/image/upload/v1575635193/ibl-logo_tb1nj1.png" width="200px" />
+                <img src="/static/img/banner.png" width="100%" />
 
-                <div class="container-fluid">
-                    <h6 class="flex-container row"><b>INTERNATIONAL BREWERIES PLC</b></h6><br>
-                    <div class="container center">UNCLAIMED DIVIDEND RECORD</div>
-                </div>
-
+     
             </div>
 
             <div class="container-fluid">
                 <hr height="5px">
 
-                <div class="dflex s12 m12 l12">
-                    <!-- <div class="left s12">
-                    Acceptance List Opens<br>
-                    December 5, 2019
-                </div> -->
-
-                    <!-- <div class="right s12">
-                    Acceptance List Closes<br>
-                    December 24, 2019
-                </div> -->
+                <div class="dflex s12 m12 l12 center">
+                    <h6 class="flex-container row center"><b>UNCLAIMED DIVIDEND RECORD</b></h6>
                 </div>
+
                 <hr>
             </div>
 
@@ -106,17 +100,17 @@
 
 
                 </div>
-                <table class="highlight">
+                <table class="striped bordered">
                     <tbody>
                         <tr>
                             <td valign="top">
                                 <p><b> SN</b></p>
-                            </td>
+                            </td>https://dividend.apel.com.ng/search
                             <td valign="top">
                                 <p><b> NAMES</b></p>
                             </td>
                             <td valign="top">
-                                <p><b> ACCOUNT N0</b></p>
+                                <p><b> ACCOUNT NO</b></p>
                             </td>  
                             <td valign="top">
                                 <p><b> COMPANY</b></p>
@@ -146,15 +140,7 @@
                             </td>
                         </tr>
                         {% endfor %}
-                        <tr>
-                            <td valign="top">
-                                <p><b></b></p>
-                            </td>
-                            <td colspan="4" valign="top">
-                                <p><i><b></b></i>
-                                </p>
-                            </td>
-                        </tr>
+                
 
                     </tbody>
                 </table>

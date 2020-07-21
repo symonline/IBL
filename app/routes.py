@@ -42,6 +42,7 @@ def search():
         # right = Right.get_right_by_acno(shareholders.acno)
         # send the Shareholder bio details with his/her Right detail
         # to be displayed / rendered on the result.html page
+
         return render_template ('result.html', 
                         title='HOME', 
                         shareholders = shareholders, company=company_name
@@ -56,7 +57,13 @@ def acceptance():
     #report_list=[]
     if request.method == 'POST':
         acno_list = request.form.getlist('option')
-        #for acno in acno_list:
+        # Ensure at least a dividend record is selected from the list
+        if not acno_list:
+            flash ("Ensure a dividend record is selected")
+            #return redirect(url_for('acceptance'))
+            #my_list2=session.get('my_list')
+            #return render_template ('result.html')
+
         rholder = HoldersRight.get_shareholder_by_acno(acno_list) #  (session.get('ACNO'))
         #report_list.append(rholder.names)#session['NAMES']=rholder.names
         #  session['DIVIDEND_BATCH']=rholder.bvn #f"{rholder.holdings:,.0f}"
