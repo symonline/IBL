@@ -20,7 +20,7 @@ class SearchForm_logic(FlaskForm):
     
     identifier2 = SelectField('Select Company:',
                               choices=[('INTERNATIONAL BREWERIES PLC', 'INTERNATIONAL BREWERIES PLC'),
-                                       ('LASACO PLC', 'LASACO PLC'),
+                                       ('LASACO ASSURANCE PLC', 'LASACO ASSURANCE PLC'),
                                        ('NCR NIGERIA PLC', 'NCR NIGERIA PLC'),
                                        ('NEM INSURANCE PLC', 'NEM INSURANCE PLC'),
                                        ('PHARMA DEKO PLC', 'PHARMA DEKO PLC'),
@@ -47,7 +47,7 @@ class SearchFormCompany_logic(FlaskForm):
     Companies = ()
     criteria = SelectField('Select Company:',
                            choices=[('ibl', 'INTERNATIONAL BREWERIES PLC'),
-                                    ('lasaco', 'LASACO'),
+                                    ('lasaco', 'LASACO ASSURANCE PLC'),
                                     ('ncr', 'NCR NIGERIA PLC'),
                                     ('nem', 'NEM INSURANCE PLC'),
                                     ('pharmadeko', 'PHARMA DEKO PLC'),

@@ -35,7 +35,7 @@ def search():
             flash ("ShareHolder Number or Name / company is either wrong or Don't exist")
             return redirect(url_for('search'))
         # display a successful message from validation on the base template
-        flash(f'Right info requested for Shareholder: {sform.criteria.data}, Identifier: { sform.identifier.data}, Identifier2: { sform.identifier2.data}')
+        flash(f'Unclaimed record of dividend requested for Shareholder: {sform.criteria.data}, Identifier: { sform.identifier.data}, Identifier2: { sform.identifier2.data}')
         # get the equivallent rights details
         # on the assumption that a shareholder to a right (one to one relationship)
         # name=session[shareholders]:
